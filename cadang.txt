@@ -1,0 +1,42 @@
+ // mendapatkan data penjualan dari database berdasarkan request
+        $data = penjualan::getDataPenjualan($request);
+        $periode = penjualan::getPeriode($request);
+        $produk = produk::all();
+        $aktual = penjualan::getTotal($periode,$data);
+        $bobot = [6];
+        $F = array();
+        $hasil = array();
+
+        for($i = 0; $i < count($bobot) ;$i++){
+            // 16:18 23/05/2020
+            // $F[$i][1] = $aktual[0];
+
+            for($j = 5; $j < count($periode); $j++){
+            //     // perhitungan peramalan untuk periode berikutnya
+            $F[$i][$j] = (($aktual[0] * 1) + ($aktual[1] * 2) + ($aktual[2] * 3))/6;
+            }
+        }
+
+        $hasil = array();
+        for ($i = 0; $i <= count($periode); $i++) {
+            if ($i < count($periode)) {
+                $hasil[$i] = [
+                    'periode'                   => $periode[$i],
+                    'aktual'                    => $aktual[$i],
+                    'peramalan'                 => $F,
+
+                ];
+            } else {
+                $nextPeriode = date('Y-m', strtotime("+1 month", strtotime(date($request->to))));
+                $hasil[$i] = [
+                    'periode'                   => $nextPeriode,
+                    'aktual'                    => 0,
+                    'peramalan'                 => $F,
+                ];
+            }
+        }
+
+
+             dd($hasil);
+            // $peramalan = ['hasil' => $hasil];
+            // return response()->json($peramalan);
