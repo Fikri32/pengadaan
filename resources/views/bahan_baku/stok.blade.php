@@ -46,9 +46,12 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                        <?php $no = 0;?>
                         @foreach ($baku_data as $d)
-                            <tr class="clickable-row" data-href="">
-                                <td></td>
+                        <?php $no++ ;?>
+                            <tr >
+                                <td>{{$no}}</td>
                                 <td>{{$d->nama}}</td>
 
                                 <td>

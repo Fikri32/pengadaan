@@ -11,7 +11,7 @@
                     <a href="{{ route('pengadaan.tambah')}}" class="">Tambah Pengadaan Bahan Baku</a>
                 </li>
                 <li>
-                    <a  class="">Kelola Pengadaan Bahan Baku</a>
+                    <a href="{{ route('pengadaan.index')}}" class="">Kelola Pengadaan Bahan Baku</a>
                 </li>
             </ul>
         </li>

@@ -71,7 +71,7 @@ Route::group(['prefix' => 'penjualan'],function(){
     Route::get('/delete/{id}','PenjualanController@delete')->name('penjualan.delete');
 });
 Route::group(['prefix' => 'pengadaan'],function(){
-
+    Route::get('/index','PengadaanController@index')->name('pengadaan.index');
     Route::match(['get' , 'post'],'tambah','PengadaanController@tambah')->name('pengadaan.tambah');
     Route::get('/getJumlah','PengadaanController@getJumlah')->name('penjualan.getJumlah');
     Route::get('/getTotal','PengadaanController@getTotal')->name('penjualan.getTotal');

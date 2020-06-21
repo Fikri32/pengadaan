@@ -54,7 +54,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-2">Jumlah Komposisi</label>
                                                     <div class="col-md-5">
-                                                        <input type="number" name="jumlah" id = "jumlah" placeholder="Masukkan Jumlah Komposisi" class="form-control" required>
+                                                    <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Jumlah Komposisi">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -93,8 +93,11 @@
                         </thead>
                         <tbody>
                           @foreach($komposisi as $d)
+                          <?php
+                        $no = 1;
+                        ?>
                             <tr class="clickable-row" data-href="">
-                                <td></td>
+                                <td><?php $no++ ?></td>
                                 <td>{{$d->produk->nama}}</td>
 
                                 <td>

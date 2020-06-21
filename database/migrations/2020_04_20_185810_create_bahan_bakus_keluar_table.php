@@ -13,13 +13,17 @@ class CreateBahanBakusKeluarTable extends Migration
      */
     public function up()
     {
+
         Schema::create('bahan_bakus_keluar', function (Blueprint $table) {
-            $table->id();
-            $table->integer('id_bahan');
+
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_bahan');
             $table->Integer('jumlah');
             $table->date('tgl_keluar');
             $table->string('transfer');
             $table->timestamps();
+            $table->foreign('id_bahan')->references('id')->on('bahan_bakus');
         });
     }
 

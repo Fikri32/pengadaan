@@ -14,6 +14,18 @@ use App\Komposisi;
 
 class PengadaanController extends Controller
 {
+    public function index()
+    {
+        $supplier = supplier::all();
+        $bahan = BahanBaku::all();
+        $ramal = Peramalan::all();
+
+        $pengadaan = pengadaan::orderBy('id_peramalan', 'desc')
+
+                    ->get();
+
+        return view('pengadaan.index',compact('pengadaan'));
+    }
     public function tambah(Request $request){
         if($request->isMethod('get')){
             // $produk = produk::all();
@@ -24,7 +36,7 @@ class PengadaanController extends Controller
 
 
 
-        return view('pengadaan.tambah',compact('value','supplier','bahan','ramal'));
+        return view('pengadaan.tambah',compact('supplier','bahan','ramal'));
         }else{
             $rules = [
                 'bahan'  => 'required',
@@ -42,7 +54,7 @@ class PengadaanController extends Controller
                 $pengadaan->id_bahanbaku = $request->get('baku');
                 $pengadaan->id_peramalan = $request->get('bahan');
                 $pengadaan->id_supplier = $request->get('supplier');
-                $pengadaan->jumlah = $request->get('jumlah');
+                $pengadaan->jumlah = $request->get('pengadaan');
                 $pengadaan->tanggal = $request->get('tanggal');
                 // dd($pengadaan);
                 $pengadaan->save();

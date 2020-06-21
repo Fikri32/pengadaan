@@ -14,10 +14,13 @@ class CreatePeramalansTable extends Migration
     public function up()
     {
         Schema::create('peramalans', function (Blueprint $table) {
-            $table->id();
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_produk');
             $table->string('nama_rencana');
             $table->Integer('jumlah');
             $table->timestamps();
+            $table->foreign('id_produk')->references('id')->on('produks');
         });
     }
 

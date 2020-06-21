@@ -14,24 +14,6 @@
             <!-- Default Elements -->
             <div class="block block-rounded">
                 <div class="block-content">
-                    <form action="" method="get">
-                    @csrf
-                        <div class="row">
-                         <!-- <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">
-                                    <div class="col-md-12">
-                                        <div class="form-material form-material-primary ">
-                                            <select class="form-control"  name="produk" id="produk">
-                                                <option value = "12">{{$value}}</option>
-                                                -->
-                                            <!-- </select>
-                                            <label for="pengolah">Jumlah Produksi</label>
-                                        </div>
-
-                                    </div>
-                                </div> -->
-                        </div>
-
-                    </form>
                     <div class="block-content">
                     <form action="" method="post" enctype="multipart/form-data">
                         @csrf
@@ -56,7 +38,7 @@
                                 <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label for="jumlah">Jumlah Produksi</label>
-                                            <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Jumlah Produksi" value = "" disabled>
+                                            <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Jumlah Produksi" value = "" readonly>
                                         @if ($errors->has('jumlah'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('jumlah') }}</strong>
@@ -108,7 +90,7 @@
                                             <select class="form-control" name="supplier" id="supplier">
                                                 <option value="">Pilih Supplier</option>
                                                 @foreach($supplier as $d)
-                                                <option value="{{ $d->id }}">{{ucfirst($d->nama)}}</option>
+                                                <option value="{{ $d->id }}">{{ucfirst($d->nama_supplier)}}</option>
                                                 @endforeach
                                             </select>
                                         @if ($errors->has('supplier'))

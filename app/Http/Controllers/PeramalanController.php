@@ -53,7 +53,15 @@ class PeramalanController extends Controller
 
             }
 
-            return view('peramalan.ramal',compact('produk','F','array'));
+            $data = [
+                'periode' => $periode,
+                'array'   => $array
+            ];
+
+            // dd($data['array']);
+
+
+            return view('peramalan.ramal',compact('produk','F','array','periode','data'));
 
         }else{
             $rules = [

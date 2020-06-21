@@ -36,12 +36,12 @@ class BahanBakuController extends Controller
         }else{
             $rules = [
                 'nama' => 'required',
-                'stok' => 'required',
+
                 'satuan' => 'required',
             ];
             $pesan = [
                 'nama.required' => 'Nama Bahan Baku Tidak Boleh Kosong',
-                'stok.required' => 'stok Bahan Baku Tidak Boleh Kosong',
+
                 'Satuan.required' => 'Satuan Bahan Baku Tidak Boleh Kosong',
             ];
             $v = Validator :: make($request->all(),$rules,$pesan);
@@ -50,7 +50,7 @@ class BahanBakuController extends Controller
             }else{
                 $baku = new BahanBaku();
                 $baku->nama = $request->get('nama');
-                $baku->stok = $request->get('stok');
+
                 $baku->satuan = $request->get('satuan');
                 $baku->save();
                 return redirect ('bahanbaku/index');

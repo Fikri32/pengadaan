@@ -9,10 +9,10 @@ class pengadaan extends Model
     protected $table = 'pengadaans';
 
     protected $fillable = [
-        'id_bahanbaku','id_supplier','jumlah','tanggal'
+        'id_bahanbaku','id_supplier','jumlah','tanggal','id_peramalan'
     ];
     public function bahanbaku(){
-        return $this->belongsTo('App\BahanBaku','id_bahan', 'id');
+        return $this->belongsTo('App\BahanBaku','id_bahanbaku', 'id');
     }
 
     public function supplier(){

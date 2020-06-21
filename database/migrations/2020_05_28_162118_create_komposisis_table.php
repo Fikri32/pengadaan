@@ -13,12 +13,16 @@ class CreateKomposisisTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('komposisis', function (Blueprint $table) {
-            $table->id();
-            $table->integer('id_produk');
-            $table->integer('id_bahanbaku');
-            $table->integer('jumlah');
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_produk');
+            $table->unsignedBigInteger('id_bahanbaku');
+            $table->decimal('jumlah', 3, 3);
             $table->timestamps();
+            $table->foreign('id_produk')->references('id')->on('produks');
+            $table->foreign('id_bahanbaku')->references('id')->on('bahan_bakus');
         });
     }
 

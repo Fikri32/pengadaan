@@ -13,8 +13,11 @@ class CreateBahanBakusTable extends Migration
      */
     public function up()
     {
+
         Schema::create('bahan_bakus', function (Blueprint $table) {
-            $table->id();
+
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
             $table->string('nama');
             $table->Integer('stok')->nullable();
             $table->string('satuan');

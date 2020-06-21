@@ -99,7 +99,7 @@
 
                             </tr>
                         </thead>
-                        @foreach($array as $a)
+                        @foreach($array as $d)
                         <tbody>
 
 
@@ -108,8 +108,9 @@
                                 <td>
 
                                 </td>
+
                                 <td>
-                                {{$a}}
+                                    {{$d}}
                                 </td>
 
 

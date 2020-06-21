@@ -14,12 +14,13 @@ class CreatePenjualansTable extends Migration
     public function up()
     {
         Schema::create('penjualans', function (Blueprint $table) {
-            $table->id();
-            $table->integer('id_produk');
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_produk');
             $table->date('tanggal');
             $table->Integer('jumlah');
-            $table->Integer('total');
             $table->timestamps();
+            $table->foreign('id_produk')->references('id')->on('produks');
         });
     }
 

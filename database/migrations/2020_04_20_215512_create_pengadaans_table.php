@@ -14,13 +14,16 @@ class CreatePengadaansTable extends Migration
     public function up()
     {
         Schema::create('pengadaans', function (Blueprint $table) {
-            $table->id();
-            $table->Integer('id_peramalan');
-            $table->Integer('id_supplier');
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_peramalan');
+            $table->unsignedBigInteger('id_supplier');
             $table->Integer('id_bahanbaku');
             $table->date('tanggal');
             $table->Integer('jumlah');
             $table->timestamps();
+            $table->foreign('id_supplier')->references('id')->on('suppliers');
+            $table->foreign('id_peramalan')->references('id')->on('peramalans');
         });
     }
 

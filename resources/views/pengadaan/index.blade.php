@@ -4,7 +4,7 @@
 <div class="bg-image" style="background-image: url('assets/img/photos/photo21@2x.jpg');">
     <div class="bg-primary-dark-op">
         <div class="content content-full content-top">
-            <h1 class="py-50 text-white text-center">Kelola Stok Bahan Baku Masuk</h1>
+            <h1 class="py-50 text-white text-center">Kelola Pengadaan</h1>
         </div>
     </div>
 </div>
@@ -16,10 +16,10 @@
                     <!-- Search -->
                     <form action="be_pages_ecom_products.html" method="post" onsubmit="return false;">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">List Stok Bahan Baku</h3>
+                            <h3 class="block-title"></h3>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Cari data Bahan Baku">
+                                    <input type="text" class="form-control" placeholder="Cari Data Penjualan">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-secondary">
                                             <i class="fa fa-search"></i>
@@ -38,52 +38,34 @@
                         <thead>
                             <tr>
                                 <th style="width: 100px;">No</th>
+                                <th class="d-none d-sm-table-cell">Nama Peramalan</th>
                                 <th class="d-none d-sm-table-cell">Bahan Baku</th>
                                 <th class="d-none d-sm-table-cell">Jumlah</th>
-                                <th class="d-none d-sm-table-cell">Satuan</th>
+                                <th class="d-none d-sm-table-cell">Tanggal</th>
                                 <th class="d-none d-sm-table-cell">Supplier</th>
-                                <th class="d-none d-sm-table-cell">Tanggal Masuk</th>
-                                <th class="d-none d-sm-table-cell">Action</th>
-
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach ($baku_data as $d)
-                        <?php
-                        $no = 1;
-                        ?>
-
+                        <?php $no = 0;?>
+                        @foreach ($pengadaan as $d)
+                        <?php $no++ ;?>
                             <tr class="clickable-row" data-href="">
-                                <td><?php $no++ ?></td>
-                                <td>{{$d->bahanbaku->nama}}</td>
+                            <td>{{$no}}</td>
+                                <td>{{$d->peramalan->nama_rencana}}</td>
 
                                 <td>
-                                  {{$d->jumlah}}
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                <em class="text-muted">{{$d->bahanbaku->satuan}}</em>
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                <em class="text-muted">{{$d->supplier->nama_supplier}}</em>
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                <em class="text-muted">{{$d->tgl_masuk}}</em>
+                                {{$d->bahanbaku->nama}}
                                 </td>
                                 <td>
-                                <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('bahanmasuk/edit/'.$d->id) }}">
-                                    <i class="si si-note mx-5"></i>
-                                    <span class="d-none d-sm-inline"> Edit Bahan Baku</span>
-                                </a>
-                                <a class="btn btn-rounded btn-alt-danger mr-10" href="{{ url('bahanmasuk/delete/'.$d->id) }}">
-                                    <i class="si si-trash mx-5"></i>
-                                    <span class="d-none d-sm-inline"> Hapus Bahan Baku</span>
-                                </a>
+                                {{$d->jumlah}}
+                                </td>
+                                <td>
 
                                 </td>
+                                <td> {{$d->supplier->nama_supplier}}</td>
                             </tr>
-
+                            @endforeach
                         </tbody>
-                        @endforeach
                     </table>
 
                     <!-- END Products Table -->
