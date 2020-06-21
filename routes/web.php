@@ -60,7 +60,7 @@ Route::group(['prefix' => 'produk'],function(){
     Route::match(['get' , 'post'],'tambah','ProdukController@tambah')->name('produk.tambah');
     Route::get('/edit/{id}','ProdukController@edit')->name('produk.edit');
     Route::post('/update/{id}','ProdukController@update')->name('produk.update');
-    Route::get('/delete/{id}','ProdukController@delete')->name('produk.delete');
+    Route::delete('/delete/{id}','ProdukController@delete')->name('produk.delete');
 });
 
 Route::group(['prefix' => 'penjualan'],function(){
@@ -68,7 +68,7 @@ Route::group(['prefix' => 'penjualan'],function(){
     Route::match(['get' , 'post'],'tambah','PenjualanController@tambah')->name('penjualan.tambah');
     Route::get('/edit/{id}','PenjualanController@edit')->name('penjualan.edit');
     Route::post('/update/{id}','PenjualanController@update')->name('penjualan.update');
-    Route::get('/delete/{id}','PenjualanController@delete')->name('penjualan.delete');
+    Route::delete('/delete/{id}','PenjualanController@delete')->name('penjualan.delete');
 });
 Route::group(['prefix' => 'pengadaan'],function(){
     Route::get('/index','PengadaanController@index')->name('pengadaan.index');

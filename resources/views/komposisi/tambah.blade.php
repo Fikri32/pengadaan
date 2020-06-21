@@ -92,12 +92,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $no = 0;?>
                           @foreach($komposisi as $d)
-                          <?php
-                        $no = 1;
-                        ?>
-                            <tr class="clickable-row" data-href="">
-                                <td><?php $no++ ?></td>
+                          <?php $no++ ;?>
+
+                            <tr>
+                                <td>{{$no}}</td>
                                 <td>{{$d->produk->nama}}</td>
 
                                 <td>
@@ -135,11 +135,5 @@
 @stop
 
 @push('scripts')
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $(".clickable-row").click(function() {
-            window.location = $(this).data("href");
-        });
-    });
-</script>
+
 @endpush

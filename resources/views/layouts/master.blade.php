@@ -45,5 +45,6 @@
         <!-- END Page Container -->
         @include('layouts/incl_bottom')
         @stack('scripts')
+        @include('sweetalert::alert')
     </body>
 </html>

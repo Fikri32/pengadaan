@@ -89,8 +89,9 @@ class PenjualanController extends Controller
         }
     }
     public function delete($id){
-        DB::table('penjualans')->where('id',$id)->delete();
-        return back();
+        $penjualan_del = penjualan::findOrfail($id);
+        $penjualan_del->delete();
+        return response()->json(['status' => 'Data Penjualan Telah Berhasil Di hapus']);
     }
 
 

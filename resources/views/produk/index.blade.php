@@ -46,9 +46,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $no = 0;?>
                         @foreach ($produk_data as $d)
+                        <?php $no++ ;?>
                             <tr class="clickable-row" data-href="">
-                                <td></td>
+                                <input type="hidden" class = "hapus_data" value = "{{$d->id}}">
+                                <td>{{$no}}</td>
                                 <td>{{$d->nama}}</td>
 
                                 <td>
@@ -65,7 +68,7 @@
                                     <i class="si si-note mx-5"></i>
                                     <span class="d-none d-sm-inline"> Edit Produk</span>
                                 </a>
-                                <a class="btn btn-rounded btn-alt-danger mr-10" href="{{ url('produk/delete/'.$d->id) }}">
+                                <a class="btn btn-rounded btn-alt-danger mr-10 Hapus" href="">
                                     <i class="si si-trash mx-5"></i>
                                     <span class="d-none d-sm-inline"> Hapus Produk</span>
                                 </a>
@@ -91,11 +94,51 @@
 @stop
 
 @push('scripts')
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $(".clickable-row").click(function() {
-            window.location = $(this).data("href");
+<script>
+    $(document).ready(function (){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.Hapus').click(function (e){
+            e.preventDefault();
+            var delete_id = $(this).closest('tr').find('.hapus_data').val();
+
+    swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+        .then((willDelete) => {
+            if (willDelete) {
+
+                    var data = {
+                        "_token" : $('input[name=_token]').val(),
+                        "id" : delete_id,
+                    };
+
+                $.ajax({
+                    type: "DELETE",
+                    url:  '/produk/delete/'+delete_id,
+                    data : data,
+
+                    success: function (response){
+                        swal(response.status, {
+                            icon: "success",
+                        })
+                        .then((result) => {
+                            location.reload();
+                        });
+                    }
+                });
+
+            }
         });
     });
+});
+
 </script>
 @endpush

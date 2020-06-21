@@ -47,12 +47,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $no = 0;?>
                         @foreach ($baku_data as $d)
-                        <?php
-                        $no = 1;
-                        ?>
+                        <?php $no++ ;?>
                             <tr >
-                                <td><?php $no++ ?></td>
+                            <td>{{$no}}</td>
                                 <td>{{$d->bahanbaku->nama}}</td>
 
                                 <td>

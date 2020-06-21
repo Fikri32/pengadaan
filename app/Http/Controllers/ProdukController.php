@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use DB;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\produk;
 
 class ProdukController extends Controller
@@ -57,8 +58,11 @@ class ProdukController extends Controller
                $produk = new produk();
                $produk->nama = $request->get('nama');
                $produk->save();
-               return redirect('produk/index');
+               alert()->success('Produk Berhasil Di tambahkan','');
+
+
             }
+            return redirect('produk/index');
         }
     }
     public function edit(Request $request,$id){
@@ -86,13 +90,18 @@ class ProdukController extends Controller
            $produk = produk::find($id);
            $produk->nama = $request->get('nama');
            $produk->save();
-           return redirect('produk/index');
+
+
         }
+        Alert::success('Success Title', 'Success Message');
+
+        return redirect('produk/index');
     }
 
     public function delete($id){
-        DB::table('produks')->where('id',$id)->delete();
-        return back();
+        $produk_del = produk::findOrfail($id);
+        $produk_del->delete();
+        return response()->json(['status' => 'Data Produk Telah Berhasil Di hapus']);
     }
 
 }
