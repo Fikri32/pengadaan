@@ -87,8 +87,9 @@ class BahanBakuController extends Controller
         }
     }
     public function delete($id){
-        DB::table('bahan_bakus')->where('id',$id)->delete();
-        return back();
+        $bahan_del = BahanBaku::findOrfail($id);
+        $bahan_del->delete();
+        return response()->json(['status' => 'Data BahanBaku Telah Berhasil Di hapus']);
     }
 
 

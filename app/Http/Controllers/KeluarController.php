@@ -107,8 +107,9 @@ class KeluarController extends Controller
         }
     }
     public function delete($id){
-        DB::table('bahan_bakus_keluar')->where('id',$id)->delete();
-        return back();
+        $keluar_del = BahanBakuKeluar::findOrfail($id);
+        $keluar_del->delete();
+        return response()->json(['status' => 'Data Bahan Baku Keluar Telah Berhasil Di Hapus']);
     }
 }
 

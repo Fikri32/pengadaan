@@ -36,7 +36,7 @@
 
                     <table class="js-table-checkable table table-hover js-table-checkable-enabled">
                         <thead>
-                            <tr>
+                            <tr class = "text-center">
                                 <th style="width: 100px;">No</th>
                                 <th class="d-none d-sm-table-cell">Bahan Baku</th>
                                 <th class="d-none d-sm-table-cell">Jumlah</th>
@@ -48,7 +48,7 @@
                         <?php $no = 0;?>
                         @foreach ($baku_data as $d)
                         <?php $no++ ;?>
-                            <tr >
+                            <tr class = "text-center" >
                                 <td>{{$no}}</td>
                                 <td>{{$d->bahanbaku->nama}}</td>
 

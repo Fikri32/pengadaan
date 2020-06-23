@@ -79,7 +79,8 @@ class KomposisiController extends Controller
 
     }
     public function delete($id){
-        DB::table('komposisis')->where('id',$id)->delete();
-        return back();
+        $komposisi_del = Komposisi::findOrfail($id);
+        $komposisi_del->delete();
+        return response()->json(['status' => 'Data Komposisi Telah Berhasil Di Hapus']);
     }
 }

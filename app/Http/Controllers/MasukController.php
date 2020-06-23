@@ -108,8 +108,9 @@ class MasukController extends Controller
         }
     }
     public function delete($id){
-        DB::table('bahan_bakus_masuk')->where('id',$id)->delete();
-        return back();
+        $masuk_del = BahanBakuMasuk::findOrfail($id);
+        $masuk_del->delete();
+        return response()->json(['status' => 'Data Bahan Baku Masuk Telah Berhasil Di Hapus']);
     }
 }
 

@@ -29,6 +29,11 @@ class PeramalanController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function index()
+    {
+      $peramalan = Peramalan::all();
+      return view('peramalan.index',compact('peramalan'));
+    }
     public function tambah(Request $request) {
         if($request->isMethod('get')){
             $data = penjualan::getDataPenjualan($request);
@@ -83,7 +88,7 @@ class PeramalanController extends Controller
                 // dd($pengadaan);
 
                 $peramalan->save();
-                return redirect ('produk/index');
+                return redirect ('peramalan/index');
             }
         }
     }

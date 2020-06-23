@@ -97,19 +97,20 @@
                           <?php $no++ ;?>
 
                             <tr>
+                            <input type="hidden" class = "hapus_data" value = "{{$d->id}}">
                                 <td>{{$no}}</td>
                                 <td>{{$d->produk->nama}}</td>
 
                                 <td>
                                     {{$d->bahanbaku->nama}}
                                 </td>
-                                <td>{{$d->jumlah}}</td>
+                                <td>{{round($d->jumlah,2)}}%</td>
                                 <td>
                                 <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('komposisi/edit/'.$d->id) }}">
                                     <i class="si si-note mx-5"></i>
                                     <span class="d-none d-sm-inline"> Edit Komposisi</span>
                                 </a>
-                                <a class="btn btn-rounded btn-alt-danger mr-10" href="{{url('komposisi/delete/'.$d->id)}}">
+                                <a class="btn btn-rounded btn-alt-danger mr-10 Hapus" href="{{url('komposisi/delete/'.$d->id)}}">
                                     <i class="si si-trash mx-5"></i>
                                     <span class="d-none d-sm-inline"> Hapus Komposisi</span>
                                 </a>
@@ -135,5 +136,51 @@
 @stop
 
 @push('scripts')
+<script type="text/javascript">
+    $(document).ready(function (){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.Hapus').click(function (e){
+            e.preventDefault();
+            var delete_id = $(this).closest('tr').find('.hapus_data').val();
+            // alert(delete_id);
+    swal({
+        title: "Apakah Anda Yakin?",
+        text: "Data Komposisi Tidak Akan Bisa Di Kembalikan Jika Di Hapus",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
 
+                    var data = {
+                        "_token" : $('input[name=_token]').val(),
+                        "id" : delete_id,
+                    };
+
+                $.ajax({
+                    type: "DELETE",
+                    url:  '/komposisi/delete/'+delete_id,
+                    data : data,
+
+                    success: function (response){
+                        swal(response.status, {
+                            icon: "success",
+                        })
+                        .then((result) => {
+                            location.reload();
+                        });
+                    }
+                });
+
+            }
+        });
+    });
+});
+
+</script>
 @endpush

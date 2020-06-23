@@ -89,7 +89,16 @@
             </ul>
         </li>
         <li>
-            <a class="" href="{{ route('peramalan') }}" class=""><i class="fa fa-bar-chart"></i><span class="sidebar-mini-hide">Peramalan</span></a>
+        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-bar-chart mr-5"></i>Peramalan</a>
+            <ul>
+                <li>
+                    <a href="{{ route('peramalan') }}" class="">Ramal Produk</a>
+                </li>
+                <li>
+                    <a href="{{ route('peramalan.index')}}" class="">Hasil Peramalan</a>
+                </li>
+
+            </ul>
         </li>
     </ul>
 </div>

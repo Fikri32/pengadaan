@@ -4,7 +4,7 @@
 <div class="bg-image" style="background-image: url('assets/img/photos/photo21@2x.jpg');">
     <div class="bg-primary-dark-op">
         <div class="content content-full content-top">
-            <h1 class="py-50 text-white text-center">Kelola Stok Bahan Baku</h1>
+            <h1 class="py-50 text-white text-center">Hasil Peramalan</h1>
         </div>
     </div>
 </div>
@@ -16,10 +16,10 @@
                     <!-- Search -->
                     <form action="be_pages_ecom_products.html" method="post" onsubmit="return false;">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">List Stok Bahan Baku</h3>
+                            <h3 class="block-title"></h3>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Cari data Bahan Baku">
+                                    <input type="text" class="form-control" placeholder="Cari Data Penjualan">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-secondary">
                                             <i class="fa fa-search"></i>
@@ -34,43 +34,38 @@
                 <div class="block-content">
                     <!-- Products Table -->
 
-                    <table class="js-table-checkable table table-hover js-table-checkable-enabled">
+                    <table class="table table-hover table-vcenter">
                         <thead>
                             <tr class = "text-center">
-                                <th style="width: 100px;">No</th>
-                                <th class="d-none d-sm-table-cell">Bahan Baku</th>
-                                <th class="d-none d-sm-table-cell">Jumlah</th>
-                                <th class="d-none d-sm-table-cell">Satuan</th>
-                                <th class="d-none d-sm-table-cell">Action</th>
-
+                                <th  style="width: 100px;">No</th>
+                                <th>Produk</th>
+                                <th>Bulan</th>
+                                <th>Jumlah</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-
                         <?php $no = 0;?>
-                        @foreach ($baku_data as $d)
+                        @foreach ($peramalan as $d)
                         <?php $no++ ;?>
-                            <tr class = "text-center" >
+                            <tr class = "text-center">
                             <input type="hidden" class = "hapus_data" value = "{{$d->id}}">
-                                <td>{{$no}}</td>
-                                <td>{{$d->nama}}</td>
+                            <td>{{$no}}</td>
+                                <td>{{$d->produk->nama}}</td>
 
                                 <td>
-                                  {{$d->stok}}
-                                </td>
-                                <td class="d-none d-sm-table-cell">
-                                <em class="text-muted">{{$d->satuan}}</em>
+                                {{$d->nama_rencana}}
                                 </td>
                                 <td>
-                                <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('bahanbaku/edit/'.$d->id) }}">
+                                  {{$d->jumlah}}
+                                </td>
+                                <td>
+                                <div class = "btn-group">
+                                <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('penjualan/edit/'.$d->id) }}">
                                     <i class="si si-note mx-5"></i>
-                                    <span class="d-none d-sm-inline"> Edit Bahan Baku</span>
+                                    <span class="d-none d-sm-inline"> Edit Peramalan</span>
                                 </a>
-                                <a class="btn btn-rounded btn-alt-danger mr-10 Hapus" href="">
-                                    <i class="si si-trash mx-5"></i>
-                                    <span class="d-none d-sm-inline"> Hapus Bahan Baku</span>
-                                </a>
-
+                                </div>
                                 </td>
                             </tr>
                             @endforeach
@@ -92,7 +87,7 @@
 @stop
 
 @push('scripts')
-<script>
+<script type="text/javascript">
     $(document).ready(function (){
         $.ajaxSetup({
             headers: {
@@ -105,7 +100,7 @@
             // alert(delete_id);
     swal({
         title: "Apakah Anda Yakin?",
-        text: "Data Bahan Baku Tidak Akan Bisa Di Kembalikan Jika Di Hapus",
+        text: "Data Penjualan Tidak Akan Bisa Di Kembalikan Jika Di Hapus",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -120,7 +115,7 @@
 
                 $.ajax({
                     type: "DELETE",
-                    url:  '/bahanbaku/delete/'+delete_id,
+                    url:  '/penjualan/delete/'+delete_id,
                     data : data,
 
                     success: function (response){
@@ -137,5 +132,6 @@
         });
     });
 });
+
 </script>
 @endpush

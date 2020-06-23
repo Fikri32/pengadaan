@@ -20,7 +20,7 @@ class PengadaanController extends Controller
         $bahan = BahanBaku::all();
         $ramal = Peramalan::all();
 
-        $pengadaan = pengadaan::orderBy('id_peramalan', 'desc')
+        $pengadaan = pengadaan::orderBy('id_peramalan', 'asc')
 
                     ->get();
 
@@ -58,10 +58,48 @@ class PengadaanController extends Controller
                 $pengadaan->tanggal = $request->get('tanggal');
                 // dd($pengadaan);
                 $pengadaan->save();
-                return redirect ('bahanbaku/stok');
+                return redirect ('pengadaan/index');
             }
         }
     }
+
+    public function edit(Request $request,$id)
+    {
+        $pengadaan = pengadaan::where('id',$id)->get();
+        $supplier = supplier::all();
+        $bahan = BahanBaku::all();
+        $ramal = Peramalan::all();
+
+        return view('pengadaan.edit',compact('pengadaan','supplier','bahan','ramal'));
+    }
+
+    public function update(Request $request,$id)
+    {
+
+        $rules = [
+            'bahan'  => 'required',
+            'jumlah' => 'required',
+        ];
+        $pesan = [
+            'bahan' => 'Bahan Baku Tidak Boleh Kosong',
+            'jumlah' => 'Jumlah Tidak Boleh Kosong',
+        ];
+        $v = Validator :: make($request->all(),$rules,$pesan);
+        if($v->fails()){
+            return back()->withInput()->withErrors($v);
+        }else{
+            $pengadaan = pengadaan::find($id);
+            $pengadaan->id_bahanbaku = $request->get('baku');
+            $pengadaan->id_peramalan = $request->get('bahan');
+            $pengadaan->id_supplier = $request->get('supplier');
+            $pengadaan->jumlah = $request->get('pengadaan');
+            $pengadaan->tanggal = $request->get('tanggal');
+            // dd($pengadaan);
+            $pengadaan->save();
+            return redirect ('pengadaan/index');
+        }
+    }
+
 
     public function getJumlah(Request $request)
     {

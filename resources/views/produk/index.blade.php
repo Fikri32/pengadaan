@@ -36,7 +36,7 @@
 
                     <table class="js-table-checkable table table-hover js-table-checkable-enabled">
                         <thead>
-                            <tr>
+                            <tr class = "text-center">
                                 <th style="width: 100px;">No</th>
                                 <th class="d-none d-sm-table-cell">Produk</th>
                                 <th class="d-none d-sm-table-cell">Stok</th>
@@ -49,7 +49,7 @@
                         <?php $no = 0;?>
                         @foreach ($produk_data as $d)
                         <?php $no++ ;?>
-                            <tr class="clickable-row" data-href="">
+                            <tr class="text-center" data-href="">
                                 <input type="hidden" class = "hapus_data" value = "{{$d->id}}">
                                 <td>{{$no}}</td>
                                 <td>{{$d->nama}}</td>
@@ -106,8 +106,8 @@
             var delete_id = $(this).closest('tr').find('.hapus_data').val();
 
     swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            title: "Apakah Anda Yakin?",
+            text: "Data Produk Tidak Akan Bisa Di Kembalikan Jika Di Hapus",
             icon: "warning",
             buttons: true,
             dangerMode: true,

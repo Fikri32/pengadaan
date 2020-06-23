@@ -16,7 +16,7 @@ use Spatie\Permission\Models\Role;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
@@ -28,7 +28,7 @@ Route::group(['prefix' => 'supplier'], function(){
     Route::match(['get', 'post'], 'tambah', 'SupplierController@tambah')->name('supplier.tambah');
     Route::get('/edit/{id}','SupplierController@edit')->name('supplier.edit');
     Route::post('/update/{id}','SupplierController@update')->name('supplier.update');
-    Route::get('/delete/{id}','SupplierController@delete')->name('supplier.delete');
+    Route::delete('/delete/{id}','SupplierController@delete')->name('supplier.delete');
 });
 
 Route::group(['prefix' => 'bahanbaku'],function(){
@@ -37,7 +37,7 @@ Route::group(['prefix' => 'bahanbaku'],function(){
     Route::get('/keluar','BahanBakuController@tambah_keluar')->name('bahanbaku.keluar');
     Route::get('/edit/{id}','BahanBakuController@edit')->name('bahanbaku.edit');
     Route::post('/update/{id}','BahanBakuController@update')->name('bahanbaku.update');
-    Route::get('/delete/{id}','BahanBakuController@delete')->name('bahanbaku.delete');
+    Route::delete('/delete/{id}','BahanBakuController@delete')->name('bahanbaku.delete');
 });
 
 Route::group(['prefix' => 'bahanmasuk'],function(){
@@ -45,14 +45,14 @@ Route::group(['prefix' => 'bahanmasuk'],function(){
     Route::match(['get' , 'post'],'tambah','MasukController@tambah')->name('masuk.tambah');
     Route::get('/edit/{id}','MasukController@edit')->name('masuk.edit');
     Route::post('/update/{id}','MasukController@update')->name('masuk.update');
-    Route::get('/delete/{id}','MasukController@delete')->name('masuk.delete');
+    Route::delete('/delete/{id}','MasukController@delete')->name('masuk.delete');
 });
 Route::group(['prefix' => 'bahankeluar'],function(){
     Route::get('/index','KeluarController@index')->name('keluar.index');
     Route::match(['get' , 'post'],'tambah','KeluarController@tambah')->name('keluar.tambah');
     Route::get('/edit/{id}','KeluarController@edit')->name('keluar.edit');
     Route::post('/update/{id}','KeluarController@update')->name('keluar.update');
-    Route::get('/delete/{id}','KeluarController@delete')->name('keluar.delete');
+    Route::delete('/delete/{id}','KeluarController@delete')->name('keluar.delete');
 });
 
 Route::group(['prefix' => 'produk'],function(){
@@ -73,13 +73,16 @@ Route::group(['prefix' => 'penjualan'],function(){
 Route::group(['prefix' => 'pengadaan'],function(){
     Route::get('/index','PengadaanController@index')->name('pengadaan.index');
     Route::match(['get' , 'post'],'tambah','PengadaanController@tambah')->name('pengadaan.tambah');
+    Route::get('/edit/{id}','PengadaanController@edit')->name('pengadaan.edit');
+    Route::post('/update/{id}','PengadaanController@update')->name('pengadaan.update');
     Route::get('/getJumlah','PengadaanController@getJumlah')->name('penjualan.getJumlah');
     Route::get('/getTotal','PengadaanController@getTotal')->name('penjualan.getTotal');
 
 });
 Route::group(['prefix' => 'peramalan'],function(){
 
-    Route::match(['get' , 'post'],'tambah','PeramalanController@tambah')->name('peramalan');;
+    Route::match(['get' , 'post'],'tambah','PeramalanController@tambah')->name('peramalan');
+    Route::get('/index','PeramalanController@index')->name('peramalan.index');
 
 });
 Route::group(['prefix' => 'komposisi'],function(){
@@ -87,7 +90,7 @@ Route::group(['prefix' => 'komposisi'],function(){
     Route::post('/tambah','KomposisiController@tambah')->name('komposisi.tambah');
     Route::get('edit/{id}','KomposisiController@edit')->name('komposisi.edit');
     Route::post('/update/{id}','KomposisiController@update')->name('komposisi.update');
-    Route::get('/delete/{id}','KomposisiController@delete')->name('komposisi.delete');
+    Route::delete('/delete/{id}','KomposisiController@delete')->name('komposisi.delete');
 });
 Route::group(['prefix' => 'laporan'], function () {
     Route::get('/bahanmasuk','LaporanMasukController@index')->name('laporan.masuk');

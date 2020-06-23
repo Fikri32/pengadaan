@@ -36,12 +36,12 @@
 
                     <table class="js-table-checkable table table-hover js-table-checkable-enabled">
                         <thead>
-                            <tr>
+                            <tr class = "text-center">
                                 <th style="width: 100px;">No</th>
                                 <th class="d-none d-sm-table-cell">Bahan Baku</th>
                                 <th class="d-none d-sm-table-cell">Jumlah</th>
                                 <th class="d-none d-sm-table-cell">Satuan</th>
-                                <th class="d-none d-sm-table-cell">Tanggal Masuk</th>
+                                <th class="d-none d-sm-table-cell">Tanggal Keluar</th>
                                 <th class="d-none d-sm-table-cell">Action</th>
 
                             </tr>
@@ -50,7 +50,8 @@
                         <?php $no = 0;?>
                         @foreach ($baku_data as $d)
                         <?php $no++ ;?>
-                            <tr >
+                            <tr class = "text-center" >
+                            <input type="hidden" class = "hapus_data" value = "{{$d->id}}">
                             <td>{{$no}}</td>
                                 <td>{{$d->bahanbaku->nama}}</td>
 
@@ -68,7 +69,7 @@
                                     <i class="si si-note mx-5"></i>
                                     <span class="d-none d-sm-inline"> Edit Bahan Baku</span>
                                 </a>
-                                <a class="btn btn-rounded btn-alt-danger mr-10" href="{{ url('bahankeluar/delete/'.$d->id) }}">
+                                <a class="btn btn-rounded btn-alt-danger mr-10 Hapus" href="{{ url('bahankeluar/delete/'.$d->id) }}">
                                     <i class="si si-trash mx-5"></i>
                                     <span class="d-none d-sm-inline"> Hapus Bahan Baku</span>
                                 </a>
@@ -96,10 +97,50 @@
 
 @push('scripts')
 <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $(".clickable-row").click(function() {
-            window.location = $(this).data("href");
+    $(document).ready(function (){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.Hapus').click(function (e){
+            e.preventDefault();
+            var delete_id = $(this).closest('tr').find('.hapus_data').val();
+            // alert(delete_id);
+    swal({
+        title: "Apakah Anda Yakin?",
+        text: "Data Bahan Baku Keluar Tidak Akan Bisa Di Kembalikan Jika Di Hapus",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+
+                    var data = {
+                        "_token" : $('input[name=_token]').val(),
+                        "id" : delete_id,
+                    };
+
+                $.ajax({
+                    type: "DELETE",
+                    url:  '/bahankeluar/delete/'+delete_id,
+                    data : data,
+
+                    success: function (response){
+                        swal(response.status, {
+                            icon: "success",
+                        })
+                        .then((result) => {
+                            location.reload();
+                        });
+                    }
+                });
+
+            }
         });
     });
+});
+
 </script>
 @endpush

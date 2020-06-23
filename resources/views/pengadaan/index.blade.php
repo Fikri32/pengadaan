@@ -36,20 +36,21 @@
 
                     <table class="js-table-checkable table table-hover js-table-checkable-enabled">
                         <thead>
-                            <tr>
+                            <tr class= "text-center">
                                 <th style="width: 100px;">No</th>
                                 <th class="d-none d-sm-table-cell">Nama Peramalan</th>
                                 <th class="d-none d-sm-table-cell">Bahan Baku</th>
                                 <th class="d-none d-sm-table-cell">Jumlah</th>
                                 <th class="d-none d-sm-table-cell">Tanggal</th>
                                 <th class="d-none d-sm-table-cell">Supplier</th>
+                                <th class="d-none d-sm-table-cell">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php $no = 0;?>
                         @foreach ($pengadaan as $d)
                         <?php $no++ ;?>
-                            <tr class="clickable-row" data-href="">
+                            <tr class="text-center" data-href="">
                             <td>{{$no}}</td>
                                 <td>{{$d->peramalan->nama_rencana}}</td>
 
@@ -60,9 +61,15 @@
                                 {{$d->jumlah}}
                                 </td>
                                 <td>
-
+                                {{$d->tanggal}}
                                 </td>
                                 <td> {{$d->supplier->nama_supplier}}</td>
+                                <td>
+                                <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('pengadaan/edit/'.$d->id) }}">
+                                    <i class="si si-note mx-5"></i>
+                                    <span class="d-none d-sm-inline"> Edit Pengadaan</span>
+                                </a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

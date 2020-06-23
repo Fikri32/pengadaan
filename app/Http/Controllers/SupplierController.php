@@ -97,8 +97,9 @@ class SupplierController extends Controller
     }
 
     public function delete($id){
-        DB::table('suppliers')->where('id',$id)->delete();
-        return back();
+        $supplier_del = supplier::findOrfail($id);
+        $supplier_del->delete();
+        return response()->json(['status' => 'Data Supplier Telah Berhasil Di hapus']);
     }
 
 }
