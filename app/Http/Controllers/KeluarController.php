@@ -29,7 +29,7 @@ class KeluarController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-        $baku_data = BahanBakuKeluar::all();
+        $baku_data = BahanBakuKeluar::orderBy('id_bahan','asc')->get();
         // dd($baku_data)
         return view('bahan_keluar.index',compact('baku_data'));
     }
@@ -70,8 +70,9 @@ class KeluarController extends Controller
         }
     }
     public function edit(Request $request,$id){
+        $bahan = BahanBaku::all();
         $keluar = BahanBakuKeluar::where('id',$id)->get();
-        return view('bahan_keluar.edit',compact('keluar'));
+        return view('bahan_keluar.edit',compact('keluar','bahan'));
     }
 
     public function update(Request $request,$id){

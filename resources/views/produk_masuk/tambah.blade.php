@@ -4,7 +4,7 @@
 <div class="bg-image" style="background-image: url('assets/img/photos/photo21@2x.jpg');">
     <div class="bg-primary-dark-op">
         <div class="content content-full content-top">
-            <h1 class="py-50 text-white text-center">Tambah Penjualan</h1>
+            <h1 class="py-50 text-white text-center">Tambah Produk Masuk</h1>
         </div>
     </div>
 </div>
@@ -14,11 +14,11 @@
             <!-- Default Elements -->
             <div class="block block-rounded">
                 <div class="block-content">
-                    <form action="{{ route('penjualan.tambah') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('produkmasuk.tambah') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row justify-content-center">
                             <div class="col-md-6">
-                            <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">
+                                <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label for="pengolah">Produk</label>
                                             <select class="form-control" name="produk" id="produk">
@@ -37,7 +37,7 @@
                                 <div class="form-group row {{ $errors->has('tanggal') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label label for="tanggal">Tanggal</label>
-                                            <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Masukan Stok Produk" data-date-format="dd-mm-yyyy" data-language="id">
+                                            <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Masukan Stok Produk">
                                         @if ($errors->has('tanggal'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('tanggal') }}</strong>
@@ -56,6 +56,7 @@
                                         @endif
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>

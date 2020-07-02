@@ -41,6 +41,16 @@ class PeramalanController extends Controller
             $produk = produk::all();
             $array = array();
 
+            $akhir = produk::select('produks.stok')
+                    ->first();
+
+                    $hasil = intval($akhir['stok']);
+
+
+
+
+
+            // $hasil = intval($akhir);
             for($i = 0; $i<count($data); $i++) {
                 $array[$i] = intval($data[$i]['jumlah']);
 
@@ -51,10 +61,25 @@ class PeramalanController extends Controller
             $from = $request->from;
             $to = $request->to;
             $F = 0;
+            $produksi = 0;
+            $kerja = 20;
+            $d = 0;
+            $sd = 0;
+            $sl = 0;
+            $z = 1.28;
+
 
 
             if($from && $to){
                 $F = round((($array[0] * 1) + ($array[1] * 2) + ($array[2] * 3)+ ($array[3] * 4) + ($array[4] * 5) + ($array[5] * 6))/21);
+                $d = $F/$kerja;
+                $sd = $d/10;
+                $sl = 1/10;
+                $sdl = (pow($d,2) * pow($sl,2)) + (1 * pow($sd,2));
+                $sdl = (sqrt($sdl)) * $z;
+                $sdl = round($sdl);
+                $produksi = $F + $sdl - $hasil;
+                // dd($hasil);
 
             }
 
@@ -62,11 +87,15 @@ class PeramalanController extends Controller
                 'periode' => $periode,
                 'array'   => $array
             ];
+            // dd($data);
+            // dd(count($data['periode']));
+            // for($i = 0; $i < count($data['periode']); $i++ )
+            // {
+                // echo $data['periode'][$i];
+                // echo $i;
+            // }
 
-            // dd($data['array']);
-
-
-            return view('peramalan.ramal',compact('produk','F','array','periode','data'));
+            return view('peramalan.ramal',compact('produk','produksi','array','periode','data'));
 
         }else{
             $rules = [

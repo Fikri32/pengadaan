@@ -14,33 +14,45 @@
             <!-- Default Elements -->
             <div class="block block-rounded">
                 <div class="block-content">
-                    @foreach($produk as $d)
-                    <form action="{{route('produk.update',$d->id)}}" method="post" enctype="multipart/form-data">
+                    @foreach($jual as $d)
+                    <form action="{{route('penjualan.update',$d->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row justify-content-center">
                             <div class="col-md-6">
-                                <div class="form-group row {{ $errors->has('nama') ? ' is-invalid' : '' }}">
+                            <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                        <div class="form-material form-material-primary ">
-                                            <input type="text" class="form-control" id="nama" name="nama" value = "{{$d->nama}}" placeholder="Masukan Nama Produk">
-                                            <label for="no_indeks">Nama Produk</label>
-                                        </div>
-                                        @if ($errors->has('nama'))
+                                            <label for="pengolah">Produk</label>
+                                            <select class="form-control" name="produk" id="produk">
+                                            <option value="{{$d->id_produk}}">Default-{{$d->produk->nama}}</option>
+                                                @foreach($produk as $s)
+                                                <option value="{{ $s->id }}">{{ ucfirst($s->nama) }}</option>
+                                                @endforeach
+                                            </select>
+                                        @if ($errors->has('produk'))
                                             <div class="invalid-feedback">
-                                                <strong>{{ $errors->first('nama') }}</strong>
+                                                <strong>{{ $errors->first('produk') }}</strong>
                                             </div>
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group row {{ $errors->has('stok') ? ' is-invalid' : '' }}">
+                                <div class="form-group row {{ $errors->has('tanggal') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                        <div class="form-material form-material-primary ">
-                                            <input type="text" class="form-control" id="stok" name="stok" value = "{{$d->stok}}" placeholder="Masukan Stok Produk">
-                                            <label for="stok">Stok</label>
-                                        </div>
-                                        @if ($errors->has('stok'))
+                                            <label label for="tanggal">Tanggal</label>
+                                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{$d->tanggal}}" data-date-format="dd-mm-yyyy" data-language="id" placeholder="Masukan Tanggal Penjualan">
+                                        @if ($errors->has('tanggal'))
                                             <div class="invalid-feedback">
-                                                <strong>{{ $errors->first('stok') }}</strong>
+                                                <strong>{{ $errors->first('tanggal') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
+                                    <div class="col-md-12">
+                                            <label for="jumlah">Jumlah</label>
+                                            <input type="text" class="form-control" id="jumlah" name="jumlah" value ="{{$d->jumlah}}" placeholder="Masukan Stok Produk">
+                                        @if ($errors->has('jumlah'))
+                                            <div class="invalid-feedback">
+                                                <strong>{{ $errors->first('jumlah') }}</strong>
                                             </div>
                                         @endif
                                     </div>

@@ -114,9 +114,19 @@ class PengadaanController extends Controller
     {
         // dd($request->all());
         $bahanBaku = BahanBaku::find($request->bahan_id);
-        // dd($bahanBaku->komposisi);
+        $peramalan = Peramalan::find($request->bahan_id);
+
+        $kerja = 20;
+        $d = 0;
+        $sd = 0;
+        $sl = 0;
+        $z = 1.28;
+
+
         return response()->json([
             'jumlah' => $bahanBaku->komposisi->jumlah,
+            'stok'   => $bahanBaku->stok,
+
         ]);
     }
 

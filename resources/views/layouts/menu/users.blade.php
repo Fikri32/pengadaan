@@ -58,6 +58,7 @@
     </ul>
 </div>
 @endrole
+
 @role('kepala produksi')
 <div class="content-side content-side-full">
     <ul class="nav-main">
@@ -72,6 +73,18 @@
                 </li>
                 <li>
                     <a href="{{ route('produk.index')}}" class="">Kelola Produk</a>
+                </li>
+
+            </ul>
+        </li>
+        <li>
+            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-login mr-5"></i>Produk Masuk</a>
+            <ul>
+                <li>
+                    <a href="{{ route('produkmasuk.tambah')}}" class="">Tambah Data Produk Masuk</a>
+                </li>
+                <li>
+                    <a href="{{ route('produkmasuk.index')}}" class="">Kelola Produk Masuk</a>
                 </li>
 
             </ul>
@@ -103,6 +116,7 @@
     </ul>
 </div>
 @endrole
+
 @role('manager umum')
 <div class="content-side content-side-full">
     <ul class="nav-main">

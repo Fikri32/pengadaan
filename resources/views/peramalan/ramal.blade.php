@@ -99,7 +99,7 @@
 
                             </tr>
                         </thead>
-                        @foreach($array as $d)
+                        @for($i = 0; $i < count($data['array']); $i++)
                         <tbody>
 
 
@@ -107,16 +107,18 @@
 
                                 <td>
 
+                                    {{ $data['periode'][$i] }}
+
                                 </td>
 
                                 <td>
-                                    {{$d}}
+                                    {{ $data['array'][$i] }}
                                 </td>
 
 
                             </tr>
 
-                        @endforeach
+                        @endfor
                         </tbody>
 
                         <tfoot>
@@ -125,7 +127,7 @@
                         <td >
                         <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
                                 <div class="col-md-12">
-                                        <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Nama Rencana Produksi" value = "{{$F}}">
+                                        <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Nama Rencana Produksi" value = "{{$produksi}}">
                                     @if ($errors->has('jumlah'))
                                         <div class="invalid-feedback">
                                             <strong>{{ $errors->first('jumlah') }}</strong>

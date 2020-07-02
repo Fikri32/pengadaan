@@ -41,12 +41,14 @@ class ProdukController extends Controller
         }else{
             $rules = [
                 'nama' => 'required',
+                'harga' => 'required'
 
 
             ];
 
             $pesan = [
                 'nama' => 'required',
+                'harga' => 'required'
 
 
             ];
@@ -57,6 +59,7 @@ class ProdukController extends Controller
             }else{
                $produk = new produk();
                $produk->nama = $request->get('nama');
+               $produk->harga = $request->get('harga');
                $produk->save();
                alert()->success('Produk Berhasil Di tambahkan','');
 
@@ -73,12 +76,14 @@ class ProdukController extends Controller
     public function update(Request $request,$id){
         $rules = [
             'nama' => 'required',
+            'harga' => 'required',
 
 
         ];
 
         $pesan = [
             'nama' => 'required',
+            'harga' => 'required'
 
 
         ];
@@ -89,6 +94,7 @@ class ProdukController extends Controller
         }else{
            $produk = produk::find($id);
            $produk->nama = $request->get('nama');
+           $produk->harga = $request->get('harga');
            $produk->save();
 
 

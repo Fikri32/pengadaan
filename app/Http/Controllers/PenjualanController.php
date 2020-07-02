@@ -56,14 +56,18 @@ class PenjualanController extends Controller
                 $jual->jumlah = $request->get('jumlah');
 
                 $jual->save();
+                $produk = produk::find($request->produk);
+                $produk->stok = $produk->stok - $request->jumlah;
+                $produk->save();
                 return redirect ('penjualan/index');
             }
         }
     }
 
     public function edit(Request $request,$id){
-        $baku = penjualan::where('id',$id)->get();
-        return view('penjualan.edit',compact('baku'));
+        $jual = penjualan::where('id',$id)->get();
+        $produk = produk::all();
+        return view('penjualan.edit',compact('jual','produk'));
     }
 
     public function update(Request $request,$id){

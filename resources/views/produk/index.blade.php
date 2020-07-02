@@ -39,6 +39,7 @@
                             <tr class = "text-center">
                                 <th style="width: 100px;">No</th>
                                 <th class="d-none d-sm-table-cell">Produk</th>
+                                <th class="d-none d-sm-table-cell">Harga</th>
                                 <th class="d-none d-sm-table-cell">Stok</th>
                                 <th class="d-none d-sm-table-cell">Komposisi</th>
                                 <th class="d-none d-sm-table-cell">Action</th>
@@ -53,7 +54,7 @@
                                 <input type="hidden" class = "hapus_data" value = "{{$d->id}}">
                                 <td>{{$no}}</td>
                                 <td>{{$d->nama}}</td>
-
+                                <td>{{$d->harga}}</td>
                                 <td>
                                   {{$d->stok}}
                                 </td>

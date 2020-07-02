@@ -19,12 +19,10 @@
                         @csrf
                         <div class="row justify-content-center">
                             <div class="col-md-6">
-                                <div class="form-group row {{ $errors->has('nama') ? ' is-invalid' : '' }}">
+                            <div class="form-group row {{ $errors->has('nama') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                        <div class="form-material form-material-primary ">
-                                            <input type="text" class="form-control" id="nama" name="nama" value = "{{$d->nama}}" placeholder="Masukan Nama Produk">
                                             <label for="no_indeks">Nama Produk</label>
-                                        </div>
+                                            <input type="text" class="form-control" id="nama" name="nama" value = "{{$d->nama}}" placeholder="Masukan Nama Produk">
                                         @if ($errors->has('nama'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('nama') }}</strong>
@@ -32,15 +30,13 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group row {{ $errors->has('stok') ? ' is-invalid' : '' }}">
+                                <div class="form-group row {{ $errors->has('harga') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                        <div class="form-material form-material-primary ">
-                                            <input type="text" class="form-control" id="stok" name="stok" value = "{{$d->stok}}" placeholder="Masukan Stok Produk">
-                                            <label for="stok">Stok</label>
-                                        </div>
-                                        @if ($errors->has('stok'))
+                                            <label for="no_indeks">Harga Produk</label>
+                                            <input type="text" class="form-control" id="harga" name="harga" value = "{{$d->harga}}" placeholder="Masukan Harga Produk">
+                                        @if ($errors->has('harga'))
                                             <div class="invalid-feedback">
-                                                <strong>{{ $errors->first('stok') }}</strong>
+                                                <strong>{{ $errors->first('harga') }}</strong>
                                             </div>
                                         @endif
                                     </div>

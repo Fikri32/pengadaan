@@ -4,7 +4,7 @@
 <div class="bg-image" style="background-image: url('assets/img/photos/photo21@2x.jpg');">
     <div class="bg-primary-dark-op">
         <div class="content content-full content-top">
-            <h1 class="py-50 text-white text-center">Tambah Penjualan</h1>
+            <h1 class="py-50 text-white text-center">Edit Produk Masuk</h1>
         </div>
     </div>
 </div>
@@ -14,15 +14,16 @@
             <!-- Default Elements -->
             <div class="block block-rounded">
                 <div class="block-content">
-                    <form action="{{ route('penjualan.tambah') }}" method="post" enctype="multipart/form-data">
+                @foreach($masuk as $s)
+                    <form action="{{route('produkmasuk.update',$s->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row justify-content-center">
                             <div class="col-md-6">
-                            <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">
+                                <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label for="pengolah">Produk</label>
                                             <select class="form-control" name="produk" id="produk">
-                                                <option value="">Pilih Produk</option>
+                                                <option value="{{$s->id_produk}}">Default-{{$s->produk->nama}}</option>
                                                 @foreach($produk as $d)
                                                 <option value="{{ $d->id }}">{{ ucfirst($d->nama) }}</option>
                                                 @endforeach
@@ -37,7 +38,7 @@
                                 <div class="form-group row {{ $errors->has('tanggal') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label label for="tanggal">Tanggal</label>
-                                            <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Masukan Stok Produk" data-date-format="dd-mm-yyyy" data-language="id">
+                                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{$s->tanggal}}" placeholder="Masukan Stok Produk">
                                         @if ($errors->has('tanggal'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('tanggal') }}</strong>
@@ -48,7 +49,7 @@
                                 <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label for="jumlah">Jumlah</label>
-                                            <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Stok Produk">
+                                            <input type="text" class="form-control" id="jumlah" name="jumlah" value="{{$s->jumlah}}" placeholder="Masukan Stok Produk">
                                         @if ($errors->has('jumlah'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('jumlah') }}</strong>
@@ -65,6 +66,8 @@
                             </div>
                         </div>
                     </form>
+                    @endforeach
+
                 </div>
             </div>
             <!-- END Default Elements -->
@@ -75,7 +78,7 @@
 
 @push('scripts')
 <script>
-
+    $("#input-ficons-5").fileinput();
 </script>
 
 @endpush

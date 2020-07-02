@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="form-group row {{ $errors->has('pengadaan') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                            <label for="jumlah">Jumlah Penagadaan Bahan Baku</label>
+                                            <label for="jumlah">Jumlah Pengadaan Bahan Baku</label>
                                             <input type="text" class="form-control" id="pengadaan" name="pengadaan" placeholder="Jumlah pengadaan Bahan Baku">
                                         @if ($errors->has('pengadaan'))
                                             <div class="invalid-feedback">
@@ -151,7 +151,7 @@ $(document).ready(function(){
         dataType: "json",
         success: function(data){
             // alert();
-            $('#pengadaan').val(data.jumlah * $('#jumlah').val() );
+            $('#pengadaan').val((Math.round(data.jumlah * $('#jumlah').val()) - data.stok ));
         },
         failure: function(errMsg) {
             alert(errMsg);

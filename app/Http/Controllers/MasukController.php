@@ -30,7 +30,7 @@ class MasukController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-        $baku_data = BahanBakuMasuk::all();
+        $baku_data = BahanBakuMasuk::orderBy('id_bahan','asc')->get();
         // dd($baku_data)
         return view('bahan_masuk.index',compact('baku_data'));
     }
@@ -72,8 +72,10 @@ class MasukController extends Controller
         }
     }
     public function edit(Request $request,$id){
-        $keluar = BahanBakuMasuk::where('id',$id)->get();
-        return view('bahan_masuk.edit',compact('keluar'));
+        $bahan = BahanBaku::all();
+        $supplier = supplier::all();
+        $masuk = BahanBakuMasuk::where('id',$id)->get();
+        return view('bahan_masuk.edit',compact('masuk','bahan','supplier'));
     }
 
     public function update(Request $request,$id){

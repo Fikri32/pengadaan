@@ -9,7 +9,7 @@ class produk extends Model
     protected $table = 'produks';
 
     protected $fillable = [
-        'nama','stok'
+        'nama','stok','harga'
     ];
 
 

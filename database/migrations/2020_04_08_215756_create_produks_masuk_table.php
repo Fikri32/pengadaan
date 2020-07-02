@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProduksTable extends Migration
+class CreateProduksMasukTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateProduksTable extends Migration
      */
     public function up()
     {
-        Schema::create('produks', function (Blueprint $table) {
+        Schema::create('produks_masuk', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('nama');
-            $table->Integer('harga');
+            $table->unsignedBigInteger('id_produk');
             $table->date('tanggal');
-            $table->Integer('stok')->nullable();
+            $table->Integer('jumlah');
             $table->timestamps();
+            $table->foreign('id_produk')->references('id')->on('produks');
         });
     }
 

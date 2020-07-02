@@ -22,11 +22,12 @@
                             <div class="form-group row {{ $errors->has('bahan') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label for="pengolah">Nama Bahan Baku</label>
-                                            <select class="form-control" name="bahan" id="bahan">
-                                                <option value="">Pilih Bahan Baku</option>
-
-                                                <option value="{{ $d->id }}">{{ ucfirst($d->bahanbaku->nama) }}</option>
-
+                                            <select class="form-control" name="bahan" id="bahan" value = "">
+                                                <!-- <option value="{{ $d->id }}">{{ ucfirst($d->bahanbaku->nama) }}</option> -->
+                                                <option value="{{$d->id_bahan}}">Default-{{$d->bahanbaku->nama}}</option>
+                                                @foreach($bahan as $s)
+                                                <option value="{{ $s->id }}" >{{ ucfirst($s->nama) }}</option>
+                                                @endforeach
                                             </select>
                                         @if ($errors->has('bahan'))
                                             <div class="invalid-feedback">
@@ -63,8 +64,9 @@
                                             <select class="form-control" name="supplier" id="supplier">
                                                 <option value="">Pilih Supplier</option>
 
-                                                <option value="{{ $d->supplier->id }}">{{ ucfirst($d->supplier->nama_supplier) }}</option>
-
+                                                @foreach($supplier as $s)
+                                                <option value="{{ $s->id }}" {{ $s->id = $d->id_supplier ? 'selected=selected' : null }}>{{ ucfirst($s->nama_supplier) }}</option>
+                                                @endforeach
                                             </select>
                                         @if ($errors->has('supplier'))
                                             <div class="invalid-feedback">

@@ -29,6 +29,17 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="form-group row {{ $errors->has('harga') ? ' is-invalid' : '' }}">
+                                    <div class="col-md-12">
+                                            <label for="no_indeks">Harga Produk</label>
+                                            <input type="text" class="form-control" id="harga" name="harga" placeholder="Masukan Harga Produk">
+                                        @if ($errors->has('harga'))
+                                            <div class="invalid-feedback">
+                                                <strong>{{ $errors->first('harga') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
 
                             </div>
 

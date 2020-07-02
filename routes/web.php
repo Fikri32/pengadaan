@@ -63,6 +63,14 @@ Route::group(['prefix' => 'produk'],function(){
     Route::delete('/delete/{id}','ProdukController@delete')->name('produk.delete');
 });
 
+Route::group(['prefix' => 'produkmasuk'],function(){
+    Route::get('index','ProdukMasukController@index')->name('produkmasuk.index');
+    Route::match(['get','post'],'tambah','ProdukMasukController@tambah')->name('produkmasuk.tambah');
+    Route::get('/edit/{id}','ProdukMasukController@edit')->name('produkmasuk.edit');
+    Route::post('/update/{id}','ProdukMasukController@update')->name('produkmasuk.update');
+    Route::delete('/delete/{id}','ProdukMasukController@delete')->name('produkmasuk.delete');
+});
+
 Route::group(['prefix' => 'penjualan'],function(){
     Route::get('/index','PenjualanController@index')->name('penjualan.index');
     Route::match(['get' , 'post'],'tambah','PenjualanController@tambah')->name('penjualan.tambah');
