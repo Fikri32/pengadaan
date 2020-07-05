@@ -54,7 +54,7 @@ class PengadaanController extends Controller
                 $pengadaan->id_bahanbaku = $request->get('baku');
                 $pengadaan->id_peramalan = $request->get('bahan');
                 $pengadaan->id_supplier = $request->get('supplier');
-                $pengadaan->jumlah = $request->get('pengadaan');
+                $pengadaan->jumlah = $request->get('beli');
                 $pengadaan->tanggal = $request->get('tanggal');
                 // dd($pengadaan);
                 $pengadaan->save();
@@ -92,12 +92,18 @@ class PengadaanController extends Controller
             $pengadaan->id_bahanbaku = $request->get('baku');
             $pengadaan->id_peramalan = $request->get('bahan');
             $pengadaan->id_supplier = $request->get('supplier');
-            $pengadaan->jumlah = $request->get('pengadaan');
+            $pengadaan->jumlah = $request->get('beli');
             $pengadaan->tanggal = $request->get('tanggal');
             // dd($pengadaan);
             $pengadaan->save();
             return redirect ('pengadaan/index');
         }
+    }
+    public function delete($id)
+    {
+        $pengadaan = pengadaan::findOrfail($id);
+        $pengadaan->delete();
+        return response()->json(['status' => 'Data Penjualan Telah Berhasil Di hapus']);
     }
 
 

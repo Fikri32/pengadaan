@@ -14,12 +14,12 @@
             <div class="block block-themed">
                 <div class="block-content bg-body-light">
                     <!-- Search -->
-                    <form action="be_pages_ecom_products.html" method="post" onsubmit="return false;">
+                    <form action="{{route('masuk.cari')}}" method="get">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">Produk</h3>
+                            <h3 class="block-title">Produk Masuk</h3>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Cari data produk">
+                                    <input type="text" class="form-control" id="cari" name="cari" placeholder="Cari data produk Masuk">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-secondary">
                                             <i class="fa fa-search"></i>

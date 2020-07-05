@@ -19,7 +19,7 @@ class CreateProduksTable extends Migration
             $table->string('nama');
             $table->Integer('harga');
             $table->date('tanggal');
-            $table->Integer('stok')->nullable();
+            $table->Integer('stok')->default('0');
             $table->timestamps();
         });
     }

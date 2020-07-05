@@ -57,6 +57,7 @@ Route::group(['prefix' => 'bahankeluar'],function(){
 
 Route::group(['prefix' => 'produk'],function(){
     Route::get('/index','ProdukController@index')->name('produk.index');
+    Route::get('/cari','ProdukController@cari')->name('produk.cari');
     Route::match(['get' , 'post'],'tambah','ProdukController@tambah')->name('produk.tambah');
     Route::get('/edit/{id}','ProdukController@edit')->name('produk.edit');
     Route::post('/update/{id}','ProdukController@update')->name('produk.update');
@@ -65,6 +66,7 @@ Route::group(['prefix' => 'produk'],function(){
 
 Route::group(['prefix' => 'produkmasuk'],function(){
     Route::get('index','ProdukMasukController@index')->name('produkmasuk.index');
+    Route::get('/cari','ProdukMasukController@cari')->name('masuk.cari');
     Route::match(['get','post'],'tambah','ProdukMasukController@tambah')->name('produkmasuk.tambah');
     Route::get('/edit/{id}','ProdukMasukController@edit')->name('produkmasuk.edit');
     Route::post('/update/{id}','ProdukMasukController@update')->name('produkmasuk.update');
@@ -83,6 +85,7 @@ Route::group(['prefix' => 'pengadaan'],function(){
     Route::match(['get' , 'post'],'tambah','PengadaanController@tambah')->name('pengadaan.tambah');
     Route::get('/edit/{id}','PengadaanController@edit')->name('pengadaan.edit');
     Route::post('/update/{id}','PengadaanController@update')->name('pengadaan.update');
+    Route::delete('delete/{id}','PengadaanController@delete')->name('pengadaan.delete');
     Route::get('/getJumlah','PengadaanController@getJumlah')->name('penjualan.getJumlah');
     Route::get('/getTotal','PengadaanController@getTotal')->name('penjualan.getTotal');
 
@@ -91,6 +94,8 @@ Route::group(['prefix' => 'peramalan'],function(){
 
     Route::match(['get' , 'post'],'tambah','PeramalanController@tambah')->name('peramalan');
     Route::get('/index','PeramalanController@index')->name('peramalan.index');
+
+    Route::match(['get' , 'post'],'update/{id}','PeramalanController@update')->name('peramalan.update');
 
 });
 Route::group(['prefix' => 'komposisi'],function(){

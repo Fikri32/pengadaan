@@ -31,6 +31,7 @@ class PenjualanController extends Controller
         $jual = Penjualan::all();
         return view('penjualan.index',compact('jual'));
     }
+
     public function tambah(Request $request){
         if($request->isMethod('get')){
             $produk = produk::all();
@@ -55,10 +56,12 @@ class PenjualanController extends Controller
                 $jual->tanggal = $request->get('tanggal');
                 $jual->jumlah = $request->get('jumlah');
 
-                $jual->save();
-                $produk = produk::find($request->produk);
-                $produk->stok = $produk->stok - $request->jumlah;
-                $produk->save();
+                if($jual->save())
+                {
+                    $produk = produk::findOrFail($request->produk);
+                    $produk->stok = $produk->stok - $request->jumlah;
+                    $produk->update();
+                }
                 return redirect ('penjualan/index');
             }
         }
@@ -85,10 +88,17 @@ class PenjualanController extends Controller
             return back()->withInput()->withErrors($v);
         }else{
             $jual = penjualan::find($id);
+            $jual->id_produk = $request->get('produk');
             $jual->tanggal = $request->get('tanggal');
             $jual->jumlah = $request->get('jumlah');
+            if($jual->update()){
+                $jual = penjualan::select('penjualans.jumlah')->where('id',$id)->first();
+                $jual = intval($jual['jumlah']);
+                $produk = produk::find($request->produk);
+                $produk->stok = $produk->stok + $produk->stok - $jual - $request->jumlah ;
+                $produk->update();
+                }
 
-            $jual->save();
             return redirect ('penjualan/index');
         }
     }

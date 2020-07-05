@@ -12,6 +12,10 @@ class produk extends Model
         'nama','stok','harga'
     ];
 
+    public function produkmasuk(){
+        return $this->hasMany('App\ProdukMasuk','id_produk', 'id');
+    }
+
 
 
 

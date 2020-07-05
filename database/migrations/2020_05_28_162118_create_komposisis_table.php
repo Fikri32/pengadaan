@@ -19,7 +19,7 @@ class CreateKomposisisTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_produk');
             $table->unsignedBigInteger('id_bahanbaku');
-            $table->decimal('jumlah', 3, 3);
+            $table->decimal('jumlah', 5, 4);
             $table->timestamps();
             $table->foreign('id_produk')->references('id')->on('produks');
             $table->foreign('id_bahanbaku')->references('id')->on('bahan_bakus');

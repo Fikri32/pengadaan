@@ -51,6 +51,7 @@
                         @foreach ($pengadaan as $d)
                         <?php $no++ ;?>
                             <tr class="text-center" data-href="">
+                            <input type="hidden" class = "hapus_data" value = "{{$d->id}}">
                             <td>{{$no}}</td>
                                 <td>{{$d->peramalan->nama_rencana}}</td>
 
@@ -69,6 +70,11 @@
                                     <i class="si si-note mx-5"></i>
                                     <span class="d-none d-sm-inline"> Edit Pengadaan</span>
                                 </a>
+                                <a class="btn btn-rounded btn-alt-danger mr-10 Hapus" href="">
+                                    <i class="si si-trash mx-5"></i>
+                                    <span class="d-none d-sm-inline"> Hapus Pengadaan</span>
+                                </a>
+
                                 </td>
                             </tr>
                             @endforeach
@@ -91,10 +97,49 @@
 
 @push('scripts')
 <script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $(".clickable-row").click(function() {
-            window.location = $(this).data("href");
+   $(document).ready(function (){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.Hapus').click(function (e){
+            e.preventDefault();
+            var delete_id = $(this).closest('tr').find('.hapus_data').val();
+
+    swal({
+            title: "Apakah Anda Yakin?",
+            text: "Data Pengadaan Tidak Akan Bisa Di Kembalikan Jika Di Hapus",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+        .then((willDelete) => {
+            if (willDelete) {
+
+                    var data = {
+                        "_token" : $('input[name=_token]').val(),
+                        "id" : delete_id,
+                    };
+
+                $.ajax({
+                    type: "DELETE",
+                    url:  '/pengadaan/delete/'+delete_id,
+                    data : data,
+
+                    success: function (response){
+                        swal(response.status, {
+                            icon: "success",
+                        })
+                        .then((result) => {
+                            location.reload();
+                        });
+                    }
+                });
+
+            }
         });
     });
+});
 </script>
 @endpush

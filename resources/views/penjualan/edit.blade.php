@@ -46,6 +46,7 @@
                                         @endif
                                     </div>
                                 </div>
+
                                 <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label for="jumlah">Jumlah</label>

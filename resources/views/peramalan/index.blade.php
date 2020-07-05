@@ -61,7 +61,7 @@
                                 </td>
                                 <td>
                                 <div class = "btn-group">
-                                <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('penjualan/edit/'.$d->id) }}">
+                                <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('peramalan/update/'.$d->id) }}">
                                     <i class="si si-note mx-5"></i>
                                     <span class="d-none d-sm-inline"> Edit Peramalan</span>
                                 </a>

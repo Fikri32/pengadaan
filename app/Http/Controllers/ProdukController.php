@@ -29,9 +29,17 @@ class ProdukController extends Controller
      */
     public function index(){
 
-        $produk_data = produk::all();
+        $produk = produk::all();
 
-        return view('produk.index',compact('produk_data'));
+        return view('produk.index',compact('produk'));
+    }
+    public function cari(Request $request){
+        $cari = $request->cari;
+
+        $produk = DB::table('produks')
+                    ->where('nama','like',"%".$cari."%")
+                    ->paginate();
+        return view('produk.index',compact('produk'));
     }
 
 

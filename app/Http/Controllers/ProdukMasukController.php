@@ -19,6 +19,20 @@ class ProdukMasukController extends Controller
         return view('produk_masuk.index',compact('masuk'));
     }
 
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+        $masuk = ProdukMasuk::whereHas('produk', function ($query) use ($cari){
+            $query->where('nama', 'like', '%'.$cari.'%')
+                  ->orWhere('jumlah','like','%'.$cari.'%') ;
+
+        })
+        ->with(['produk' => function($query) use ($cari){
+            $query->where('nama', 'like', '%'.$cari.'%'  );
+        }])->get();
+        return view('produk_masuk.index',compact('masuk'));
+    }
+
     public function tambah(Request $request)
     {
         if($request->isMethod('get'))
@@ -48,10 +62,12 @@ class ProdukMasukController extends Controller
                 $masuk->id_produk = $request->get('produk');
                 $masuk->tanggal = $request->get('tanggal');
                 $masuk->jumlah = $request->get('jumlah');
-                $masuk->save();
-                $produk = produk::find($request->produk);
-                $produk->stok = $produk->stok + $request->jumlah;
-                $produk->save();
+                if($masuk->save()){
+
+                $produk = produk::findOrFail($request->produk);
+                $produk->stok += $request->jumlah;
+                $produk->update();
+                }
             }
             return redirect('produkmasuk/index');
         }
@@ -60,6 +76,13 @@ class ProdukMasukController extends Controller
     {
         $masuk = ProdukMasuk::where('id',$id)->get();
         $produk = produk::all();
+        // $masuk = ProdukMasuk::select('produks_masuk.jumlah')->get();
+        //     $array = array();
+        //     for($i = 0;$i<=count($masuk);$i++){
+        //         $array[$i] = intval($masuk[$i]['jumlah']);
+        //     break;
+        //         dd($array[$i]);
+        //     }
         return view('produk_masuk.edit',compact('masuk','produk'));
     }
 
@@ -82,14 +105,31 @@ class ProdukMasukController extends Controller
             return back()->withInput()->withErrors($v);
 
         }else{
+
             $masuk = ProdukMasuk::find($id);
             $masuk->id_produk = $request->get('produk');
             $masuk->tanggal = $request->get('tanggal');
             $masuk->jumlah = $request->get('jumlah');
-            $masuk->save();
+            if($masuk->update()){
+            $masuk = ProdukMasuk::select('produks_masuk.jumlah')->pluck('jumlah');
+            // $array = array();
+            // for($i = 0; $i<count($masuk); $i++){
+            //     $array[$i] = intval($masuk[$i]['jumlah']);
+            //     dd($masuk[$i]);
+            // break;
+            // }
+
             $produk = produk::find($request->produk);
-            $produk->stok = $produk->stok + $request->jumlah;
-            $produk->save();
+            $hitung = ProdukMasuk::all()->count();
+            if($hitung == 1){
+                $produk->stok = $produk->stok - $produk->stok + $request->jumlah;
+            }else{
+
+                $produk->stok = $produk->stok - $produk->stok + $request->jumlah ;
+
+            }
+            $produk->update();
+            }
         }
         return redirect('produkmasuk/index');
     }

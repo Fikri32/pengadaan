@@ -19,7 +19,7 @@ class CreateBahanBakusTable extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('nama');
-            $table->Integer('stok')->nullable();
+            $table->Integer('stok')->default('0');
             $table->string('satuan');
             $table->timestamps();
         });
