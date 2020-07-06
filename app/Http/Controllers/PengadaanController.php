@@ -122,11 +122,7 @@ class PengadaanController extends Controller
         $bahanBaku = BahanBaku::find($request->bahan_id);
         $peramalan = Peramalan::find($request->bahan_id);
 
-        $kerja = 20;
-        $d = 0;
-        $sd = 0;
-        $sl = 0;
-        $z = 1.28;
+
 
 
         return response()->json([

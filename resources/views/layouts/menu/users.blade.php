@@ -117,7 +117,7 @@
 </div>
 @endrole
 
-@role('manager umum')
+@role('direktur umum')
 <div class="content-side content-side-full">
     <ul class="nav-main">
         <li>
@@ -130,7 +130,15 @@
             <a class="" href="" class=""><i class="fa fa-industry mr-5"></i><span class="sidebar-mini-hide">Laporan produksi</span></a>
         </li>
         <li>
-            <a class="" href="" class=""><i class="fa fa-cubes mr-5"></i><span class="sidebar-mini-hide">Laporan Bahan Baku</span></a>
+            <a class="" href="{{ route('laporan.stok')}}" ><i class="fa fa-cubes mr-5"></i><span class="sidebar-mini-hide">Laporan Stok Bahan Baku</span></a>
+        </li>
+
+        <li>
+        <a class=""  href="{{ route('laporan.masuk')}}"><i class="si si-login mr-5"></i>Laporan Bahan Baku Masuk</a>
+        </li>
+
+        <li>
+            <a class="" href="{{ route('laporan.keluar')}}"><i class="si si-logout mr-5"></i>Laporan Bahan Baku Keluar</a>
         </li>
     </ul>
 </div>

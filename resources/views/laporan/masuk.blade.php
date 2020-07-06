@@ -16,7 +16,7 @@
                     <!-- Search -->
                     <form action="be_pages_ecom_products.html" method="post" onsubmit="return false;">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">List Stok Bahan Baku</h3>
+                            <h3 class="block-title"></h3>
                             <div class="form-group">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Cari data Bahan Baku">
@@ -63,7 +63,7 @@
                                 <em class="text-muted">{{$d->supplier->nama_supplier}}</em>
                                 </td>
                                 <td class="d-none d-sm-table-cell">
-                                <em class="text-muted">{{$d->tgl_masuk}}</em>
+                                <em class="text-muted">{{date("d-m-Y", strtotime($d->tgl_masuk))}}</em>
                                 </td>
 
                             </tr>

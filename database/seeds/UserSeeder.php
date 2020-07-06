@@ -28,11 +28,11 @@ class UserSeeder extends Seeder
         $produksi->assignRole('kepala produksi');
 
         $manager = User::Create([
-            'name' => 'Manager Umum',
+            'name' => 'direktur Umum',
             'email' => 'managerumum@gmail.com',
             'password' => bcrypt('admin123')
         ]);
-        $manager->assignRole('manager umum');
+        $manager->assignRole('direktur umum');
 
         $staff = User::Create([
             'name' => 'Staff Gudang',

@@ -93,6 +93,7 @@ Route::group(['prefix' => 'pengadaan'],function(){
 Route::group(['prefix' => 'peramalan'],function(){
 
     Route::match(['get' , 'post'],'tambah','PeramalanController@tambah')->name('peramalan');
+    Route::get('/getProduk','PeramalanController@getProduk')->name('peramalan.getTotal');
     Route::get('/index','PeramalanController@index')->name('peramalan.index');
 
     Route::match(['get' , 'post'],'update/{id}','PeramalanController@update')->name('peramalan.update');
@@ -108,4 +109,5 @@ Route::group(['prefix' => 'komposisi'],function(){
 Route::group(['prefix' => 'laporan'], function () {
     Route::get('/bahanmasuk','LaporanMasukController@index')->name('laporan.masuk');
     Route::get('/bahankeluar', 'LaporanKeluarController@index')->name('laporan.keluar');
+    Route::get('/stokbahanbaku','LaporanStokController@index')->name('laporan.stok');
 });

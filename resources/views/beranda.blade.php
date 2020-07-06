@@ -16,35 +16,58 @@
 </div>
 
 <div class="content">
-    <div class="row invisible" data-toggle="appear">
-        <!-- Row #2 -->
-        <div class="col-md-12">
-            <div class="block block-rounded block-bordered">
-                <div class="block-header block-header-default border-b">
-                    <h3 class="block-title">
-                        Grafik Bahan Baku <small>2019</small>
-                    </h3>
-                    <div class="block-options">
-                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="state_toggle" data-action-mode="demo">
-                            <i class="si si-refresh"></i>
-                        </button>
-                        <button type="button" class="btn-block-option">
-                            <i class="si si-wrench"></i>
-                        </button>
+    <div class="row gutters-tiny invisible" data-toggle="appear">
+        <!-- Row #1 -->
+        <div class="col-6 col-xl-3">
+            <a class="block block-link-rotate block-transparent text-right bg-primary-lighter" href="javascript:void(0)">
+                <div class="block-content block-content-full clearfix">
+                    <div class="float-left mt-10 d-none d-sm-block">
+                        <i class="si si-handbag fa-3x text-primary"></i>
                     </div>
-                </div>
-                <div class="block-content block-content-full">
-                    <div class="pull-all pt-50">
-                        <!-- Lines Chart Container -->
-                        <canvas id="grafik-BahanBaku"></canvas>
+                    <div>
+                        @foreach($produk as $d)
+                        <div class="font-size-h3 font-w600 text-primary-darker"><span data-toggle="countTo" data-speed="1000" data-to="{{$d->stok}}"></span> Ton </div>
+                        <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Persediaan Produk {{$d->nama}}</div>
+                        @endforeach
                     </div>
-                </div>
-                <div class="block-content">
 
                 </div>
-            </div>
+            </a>
         </div>
-        <!-- END Row #2 -->
+        <div class="col-6 col-xl-3">
+            <a class="block block-link-rotate block-transparent text-right bg-primary-lighter" href="javascript:void(0)">
+                <div class="block-content block-content-full clearfix">
+                    <div class="float-left mt-10 d-none d-sm-block">
+                        <i class="fa fa-dollar fa-3x text-primary"></i>
+                    </div>
+                    <div class="font-size-h3 font-w600 text-primary-darker"><span data-toggle="countTo" data-speed="1000" data-to="{{$penjualan}}"></span> Ton </div>
+                    <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Produk Terjual</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-xl-3">
+            <a class="block block-link-rotate block-transparent text-right bg-primary-lighter" href="javascript:void(0)">
+                <div class="block-content block-content-full clearfix">
+                    <div class="float-left mt-10 d-none d-sm-block">
+                        <i class=" si si-social-dropbox fa-3x text-primary"></i>
+                    </div>
+                    <div class="font-size-h3 font-w600 text-primary-darker" data-toggle="countTo" data-speed="1000" data-to="15">0</div>
+                    <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Messages</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-xl-3">
+            <a class="block block-link-rotate block-transparent text-right bg-primary-lighter" href="javascript:void(0)">
+                <div class="block-content block-content-full clearfix">
+                    <div class="float-left mt-10 d-none d-sm-block">
+                        <i class="si si-users fa-3x text-primary"></i>
+                    </div>
+                    <div class="font-size-h3 font-w600 text-primary-darker" data-toggle="countTo" data-speed="1000" data-to="4252">0</div>
+                    <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Online</div>
+                </div>
+            </a>
+        </div>
+        <!-- END Row #1 -->
     </div>
 </div>
 @stop

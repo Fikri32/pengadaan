@@ -28,7 +28,7 @@ class PenjualanController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-        $jual = Penjualan::all();
+        $jual = Penjualan::orderBy('id_produk','asc')->get();
         return view('penjualan.index',compact('jual'));
     }
 
@@ -107,6 +107,8 @@ class PenjualanController extends Controller
         $penjualan_del->delete();
         return response()->json(['status' => 'Data Penjualan Telah Berhasil Di hapus']);
     }
+
+
 
 
 }

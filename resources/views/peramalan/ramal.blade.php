@@ -14,45 +14,51 @@
             <!-- Default Elements -->
             <div class="block block-rounded">
                 <div class="block-content">
+
                     <form action="{{ route('peramalan') }}" method="get">
                     @csrf
                         <div class="row">
-                         <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">
-                                    <div class="col-md-12">
-                                        <div class="form-material form-material-primary ">
+                        <div class="col-md-6 col-xl-3">
+                            <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">
+                                    <label class="col-lg-4 col-form-label" >Produk</label>
+                                    <div class="col-lg-8">
                                         <select class="form-control" name="produk" id="produk">
-                                                <option value="">Pilih Produk</option>
-                                                @foreach($produk as $d)
-                                                <option value="{{ $d->id }}">{{ ucfirst($d->nama) }}</option>
-                                                @endforeach
-                                            </select>
-                                            <label for="pengolah">Produk</label>
+                                            <option value="">Pilih Produk</option>
+                                            @foreach($produk as $d)
+                                            <option value="{{ $d->id }}">{{ ucfirst($d->nama) }}</option>
+                                            @endforeach
+                                        </select>
+                                    @if ($errors->has('produk'))
+                                        <div class="invalid-feedback">
+                                            <strong>{{ $errors->first('produk') }}</strong>
                                         </div>
-
-                                    </div>
+                                    @endif
                                 </div>
-                            <div class="col-lg-5">
+                            </div>
+                            </div>
+                            <div class="col-md-6 col-xl-3">
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" >Dari</label>
+                                    <label class="col-lg-2 col-form-label" >Dari</label>
                                     <div class="col-lg-8">
                                         <input type="month" class="form-control" id="from" name="from" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="dd-mm-yyyy" placeholder="Dari Tanggal">
                                         <div class="form-text text-danger"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-5">
+                            <div class="col-md-6 col-xl-3">
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" >Sampai</label>
+                                    <label class="col-lg-3 col-form-label" >Sampai</label>
                                     <div class="col-lg-8">
                                         <input type="month" class="form-control" id="to" name="to" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="dd-mm-yyyy" placeholder="Sampai Tanggal">
                                         <div class="form-text text-danger"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-2">
+                           <br>
+                            <div class="col-md-6 col-xl-3" >
                                 <div class="form-group row">
-                                    <div class="col-lg-12">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Cari</button>
+                                    <div class="col-sm-6">
+                                        <button type="submit" class="btn btn-primary btn-lg mr-0 ml-auto btn-block">Ramal</button>
                                     </div>
                                 </div>
                             </div>
@@ -64,6 +70,7 @@
 
                     <!-- Products Table -->
                     <table class="table table-bordered table-striped table-hover">
+
                     <form action="{{ route('peramalan') }}" method="post">
                         @csrf
                             <div class="form-group row {{ $errors->has('nama') ? ' is-invalid' : '' }}">
@@ -80,7 +87,7 @@
                             <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">
                                 <div class="col-md-5">
 
-                                        <input type="hidden" class="form-control" id="produk" name="produk" placeholder="Masukan Nama Rencana Produksi" value= "{{ $d->id }}">
+                                        <input type="hidden" class="form-control" id="produk_id" name="produk_id"  value="{{ old('produk') }}" placeholder="Masukan Nama Rencana Produksi" value= "">
                                     @if ($errors->has('produk'))
                                         <div class="invalid-feedback">
                                             <strong>{{ $errors->first('produk') }}</strong>
@@ -155,6 +162,7 @@
 
                     <!-- END Products Table -->
                 </form>
+
                 </div>
             </div>
             <!-- END Default Elements -->

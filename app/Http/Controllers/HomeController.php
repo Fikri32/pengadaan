@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\penjualan;
+use App\produk;
+use App\BahanBaku;
+use App\BahanBakuMasuk;
+use App\BahanBakuKeluar;
+use DB;
 use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
@@ -25,6 +31,13 @@ class HomeController extends Controller
     public function index()
     {
 
-        return view('beranda');
+        $penjualan = penjualan::select('penjualans.id_produk,penjualans.jumlah')
+        ->join('produks','produks.id','=','penjualans.id_produk')
+        ->sum('penjualans.jumlah');
+
+        // dd($penjualan);
+        $produk    = produk::all();
+        // dd($produk);
+        return view('beranda', compact('penjualan','produk'));
     }
 }

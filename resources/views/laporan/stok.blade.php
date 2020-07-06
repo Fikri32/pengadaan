@@ -4,7 +4,7 @@
 <div class="bg-image" style="background-image: url('assets/img/photos/photo21@2x.jpg');">
     <div class="bg-primary-dark-op">
         <div class="content content-full content-top">
-            <h1 class="py-50 text-white text-center">Laporan Bahan Baku Keluar</h1>
+            <h1 class="py-50 text-white text-center">Laporan Stok Bahan Baku</h1>
         </div>
     </div>
 </div>
@@ -41,29 +41,28 @@
                                 <th class="d-none d-sm-table-cell">Bahan Baku</th>
                                 <th class="d-none d-sm-table-cell">Jumlah</th>
                                 <th class="d-none d-sm-table-cell">Satuan</th>
-                                <th class="d-none d-sm-table-cell">Tanggal Keluar</th>
                             </tr>
                         </thead>
                         <tbody>
+
                         <?php $no = 0;?>
                         @foreach ($baku_data as $d)
                         <?php $no++ ;?>
                             <tr class = "text-center" >
+                            <input type="hidden" class = "hapus_data" value = "{{$d->id}}">
                                 <td>{{$no}}</td>
-                                <td>{{$d->bahanbaku->nama}}</td>
+                                <td>{{$d->nama}}</td>
 
                                 <td>
-                                  {{$d->jumlah}}
+                                  {{$d->stok}}
                                 </td>
                                 <td class="d-none d-sm-table-cell">
-                                <em class="text-muted"> {{$d->bahanbaku->satuan}}</em>
+                                <em class="text-muted">{{$d->satuan}}</em>
                                 </td>
-                                <td class="d-none d-sm-table-cell">
-                                <em class="text-muted">{{ date("d-m-Y", strtotime($d->tgl_keluar))}}</em>
-                                </td>
+
                             </tr>
+                            @endforeach
                         </tbody>
-                        @endforeach
                     </table>
 
                     <!-- END Products Table -->
@@ -81,11 +80,50 @@
 @stop
 
 @push('scripts')
-<script type="text/javascript">
-    jQuery(document).ready(function($) {
-        $(".clickable-row").click(function() {
-            window.location = $(this).data("href");
+<script>
+    $(document).ready(function (){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.Hapus').click(function (e){
+            e.preventDefault();
+            var delete_id = $(this).closest('tr').find('.hapus_data').val();
+            // alert(delete_id);
+    swal({
+        title: "Apakah Anda Yakin?",
+        text: "Data Bahan Baku Tidak Akan Bisa Di Kembalikan Jika Di Hapus",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+
+                    var data = {
+                        "_token" : $('input[name=_token]').val(),
+                        "id" : delete_id,
+                    };
+
+                $.ajax({
+                    type: "DELETE",
+                    url:  '/bahanbaku/delete/'+delete_id,
+                    data : data,
+
+                    success: function (response){
+                        swal(response.status, {
+                            icon: "success",
+                        })
+                        .then((result) => {
+                            location.reload();
+                        });
+                    }
+                });
+
+            }
         });
     });
+});
 </script>
 @endpush

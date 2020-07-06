@@ -9,7 +9,7 @@ class Peramalan extends Model
      protected $table = 'Peramalans';
 
     protected $fillable = [
-        'nama_rencana','jumlah'
+        'id_produk','nama_rencana','jumlah'
     ];
 
     public function produk(){

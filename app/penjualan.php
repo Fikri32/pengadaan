@@ -48,7 +48,10 @@ class penjualan extends Model
 
     public static function getDataPenjualan($request)
     {
-        $produk_id = $request->get('produk');
+        $request->session()->put('key', 'value');
+        $produk_id = $request->input('produk');
+        $session = $request->session()->put('produk',$produk_id);
+        // dd($session);
         $from = $request->from;
         $to = $request->to;
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+
 use DB;
 use App\Peramalan;
 use App\penjualan;
@@ -40,12 +41,11 @@ class PeramalanController extends Controller
             $data = penjualan::getDataPenjualan($request);
             $periode = penjualan::getPeriode($request);
             $produk = produk::all();
+            // dd($produk);
             $array = array();
+            // $session = $request->session()->put('produk',$produk_id);
+            // dd($session);
 
-            $akhir = produk::select('produks.stok')
-                    ->first();
-
-                    $hasil = intval($akhir['stok']);
 
             // $hasil = intval($akhir);
             for($i = 0; $i<count($data); $i++) {
@@ -63,9 +63,14 @@ class PeramalanController extends Controller
             $sl = 0;
             $z = 1.28;
 
+            if($from && $to)
+            {
+                $akhir = produk::findOrFail($request->produk);
+                $stok = $akhir->stok;
+                // dd($stok);
 
+                // $hasil = intval($akhir['stok']);
 
-            if($from && $to){
                 $F = round((($array[0] * 1) + ($array[1] * 2) + ($array[2] * 3)+ ($array[3] * 4) + ($array[4] * 5) + ($array[5] * 6))/21);
                 $d = $F/$kerja;
                 $sd = $d/10;
@@ -74,9 +79,8 @@ class PeramalanController extends Controller
                 $sdl = (sqrt($sdl)) * $z;
                 $sdl = round($sdl);
                 // dd($sdl);
-                $produksi = $F + $sdl - $hasil;
+                $produksi = $F + $sdl - $stok;
                 // dd($hasil);
-
             }
 
             $data = [
@@ -84,15 +88,7 @@ class PeramalanController extends Controller
                 'array'   => $array
             ];
             // dd($data);
-            // dd(count($data['periode']));
-            // for($i = 0; $i < count($data['periode']); $i++ )
-            // {
-                // echo $data['periode'][$i];
-                // echo $i;
-            // }
-
             return view('peramalan.ramal',compact('produk','produksi','array','periode','data'));
-
         }else{
             $rules = [
                 'nama'  => 'required',
@@ -107,7 +103,7 @@ class PeramalanController extends Controller
                 return back()->withInput()->withErrors($v);
             }else{
                 $peramalan = new Peramalan();
-                $peramalan->id_produk = $request->input('produk');
+                $peramalan->id_produk = Input::get('produk');
                 $peramalan->nama_rencana = $request->get('nama');
                 $peramalan->jumlah = $request->get('jumlah');
                 // dd($pengadaan);
@@ -118,11 +114,12 @@ class PeramalanController extends Controller
         }
     }
     public function update(Request $request,$id) {
-        if($request->isMethod('get')){
+         if($request->isMethod('get')){
             $data = penjualan::getDataPenjualan($request);
             $periode = penjualan::getPeriode($request);
-            $produk = produk::all();
             $ramal = Peramalan::where('id',$id)->get();
+            // dd($ramal);
+            $produk = produk::all();
             $array = array();
 
             $akhir = produk::select('produks.stok')
@@ -146,9 +143,11 @@ class PeramalanController extends Controller
             $sl = 0;
             $z = 1.28;
 
+            if($from && $to)
+            {
+                $akhir = produk::findOrFail($request->produk);
+                $stok = $akhir->stok;
 
-
-            if($from && $to){
                 $F = round((($array[0] * 1) + ($array[1] * 2) + ($array[2] * 3)+ ($array[3] * 4) + ($array[4] * 5) + ($array[5] * 6))/21);
                 $d = $F/$kerja;
                 $sd = $d/10;
@@ -157,25 +156,15 @@ class PeramalanController extends Controller
                 $sdl = (sqrt($sdl)) * $z;
                 $sdl = round($sdl);
                 // dd($sdl);
-                $produksi = $F + $sdl - $hasil;
+                $produksi = $F + $sdl - $stok;
                 // dd($hasil);
-
             }
 
             $data = [
                 'periode' => $periode,
                 'array'   => $array
             ];
-            // dd($data);
-            // dd(count($data['periode']));
-            // for($i = 0; $i < count($data['periode']); $i++ )
-            // {
-                // echo $data['periode'][$i];
-                // echo $i;
-            // }
-
             return view('peramalan.edit',compact('produk','produksi','array','periode','data','ramal'));
-
         }else{
             $rules = [
                 'nama'  => 'required',
@@ -189,7 +178,7 @@ class PeramalanController extends Controller
             if($v->fails()){
                 return back()->withInput()->withErrors($v);
             }else{
-                $peramalan = peramalan::find($id);
+                $peramalan = Peramalan::findOrFail($id);
                 $peramalan->id_produk = $request->input('produk');
                 $peramalan->nama_rencana = $request->get('nama');
                 $peramalan->jumlah = $request->get('jumlah');
@@ -199,6 +188,14 @@ class PeramalanController extends Controller
                 return redirect ('peramalan/index');
             }
         }
+    }
+    public function getProduk(Request $request)
+    {
+        // dd($request->all());
+        $produk = produk::find($request->produk);
+        return response()->json([
+            // 'produk'=> $produk->id,
+        ]);
     }
 }
 

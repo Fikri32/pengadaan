@@ -39,8 +39,8 @@
                             <tr class = "text-center">
                                 <th style="width: 100px;">No</th>
                                 <th class="d-none d-sm-table-cell">Produk</th>
-                                <th class="d-none d-sm-table-cell">Tanggal</th>
                                 <th class="d-none d-sm-table-cell">Jumlah</th>
+                                <th class="d-none d-sm-table-cell">Tanggal</th>
                                 <th class="d-none d-sm-table-cell">Action</th>
 
                             </tr>
@@ -53,11 +53,11 @@
                                 <input type="hidden" class = "hapus_data" value = "{{$d->id}}">
                                 <td>{{$no}}</td>
                                 <td>{{$d->produk->nama}}</td>
-                                <td>{{ date("d-m-Y", strtotime($d->tanggal)) }}</td>
                                 <td>
                                   {{$d->jumlah}}
                                 </td>
 
+                                <td>{{ date("d-m-Y", strtotime($d->tanggal)) }}</td>
                                 <td>
                                 <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('produkmasuk/edit/'.$d->id) }}">
                                     <i class="si si-note mx-5"></i>
