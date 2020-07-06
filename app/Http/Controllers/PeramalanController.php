@@ -41,6 +41,7 @@ class PeramalanController extends Controller
             $data = penjualan::getDataPenjualan($request);
             $periode = penjualan::getPeriode($request);
             $produk = produk::all();
+            $produk_id = $request->input('produk');
             // dd($produk);
             $array = array();
             // $session = $request->session()->put('produk',$produk_id);
@@ -88,7 +89,7 @@ class PeramalanController extends Controller
                 'array'   => $array
             ];
             // dd($data);
-            return view('peramalan.ramal',compact('produk','produksi','array','periode','data'));
+            return view('peramalan.ramal',compact('produk','produksi','array','periode','data', 'produk_id'));
         }else{
             $rules = [
                 'nama'  => 'required',
@@ -103,7 +104,7 @@ class PeramalanController extends Controller
                 return back()->withInput()->withErrors($v);
             }else{
                 $peramalan = new Peramalan();
-                $peramalan->id_produk = Input::get('produk');
+                $peramalan->id_produk = $request->get('produk_id');
                 $peramalan->nama_rencana = $request->get('nama');
                 $peramalan->jumlah = $request->get('jumlah');
                 // dd($pengadaan);
@@ -118,6 +119,7 @@ class PeramalanController extends Controller
             $data = penjualan::getDataPenjualan($request);
             $periode = penjualan::getPeriode($request);
             $ramal = Peramalan::where('id',$id)->get();
+            $produk_id = $request->input('produk');
             // dd($ramal);
             $produk = produk::all();
             $array = array();
@@ -164,7 +166,7 @@ class PeramalanController extends Controller
                 'periode' => $periode,
                 'array'   => $array
             ];
-            return view('peramalan.edit',compact('produk','produksi','array','periode','data','ramal'));
+            return view('peramalan.edit',compact('produk','produksi','array','periode','data','ramal','produk_id'));
         }else{
             $rules = [
                 'nama'  => 'required',
@@ -179,7 +181,7 @@ class PeramalanController extends Controller
                 return back()->withInput()->withErrors($v);
             }else{
                 $peramalan = Peramalan::findOrFail($id);
-                $peramalan->id_produk = $request->input('produk');
+                $peramalan->id_produk = $request->get('produk_id');
                 $peramalan->nama_rencana = $request->get('nama');
                 $peramalan->jumlah = $request->get('jumlah');
                 // dd($pengadaan);

@@ -60,7 +60,6 @@ class penjualan extends Model
             ->where('produks.id', $produk_id)
             ->whereRaw("DATE_FORMAT(penjualans.tanggal, '%Y-%m') >= '$from' AND DATE_FORMAT(penjualans.tanggal, '%Y-%m') <= '$to'")
             ->get();
-
         return $data;
     }
     public static function getAllDataPenjualan()

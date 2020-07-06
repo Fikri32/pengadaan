@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use DB;
 use App\BahanBaku;
 use App\BahanBakuKeluar;
+use App\BahanBakuMasuk;
 
 
 class KeluarController extends Controller
@@ -98,18 +99,28 @@ class KeluarController extends Controller
             $baku->id_bahan = $request->get('bahan');
             $baku->jumlah = $request->get('jumlah');
             $baku->tgl_keluar = $request->get('tgl_keluar');
-            $baku->save();
 
-            $bahanbaku = BahanBaku::find($request->bahan);
-            $bahanbaku->stok = $bahanbaku->stok - $request->jumlah;
-            $bahanbaku->save();
+            if($baku->update()){
+                //untuk table produk
+                $total_bahan_masuk = BahanBakuMasuk::where('id_bahan',$baku->id_bahan)->sum('jumlah');
+                $total_bahan_keluar = BahanBakuKeluar::where('id_bahan',$baku->id_bahan)->sum('jumlah');
+                $update_bahan = BahanBaku::find($baku->id_bahan);
+                $update_bahan->stok = $total_bahan_masuk - $total_bahan_keluar;
+                $update_bahan->update();
+            }
 
             return redirect ('bahankeluar/index');
         }
     }
     public function delete($id){
         $keluar_del = BahanBakuKeluar::findOrfail($id);
-        $keluar_del->delete();
+        if($keluar_del->delete()){
+            $total_bahan_masuk = BahanBakuMasuk::where('id_bahan',$keluar_del->id_bahan)->sum('jumlah');
+            $total_bahan_keluar = BahanBakuKeluar::where('id_bahan',$keluar_del->id_bahan)->sum('jumlah');
+            $update_bahan = BahanBaku::find($keluar_del->id_bahan);
+            $update_bahan->stok = $total_bahan_masuk - $total_bahan_keluar;
+            $update_bahan->update();
+        }
         return response()->json(['status' => 'Data Bahan Baku Keluar Telah Berhasil Di Hapus']);
     }
 }

@@ -100,18 +100,25 @@ class MasukController extends Controller
             $baku->id_supplier = $request->get('supplier');
             $baku->jumlah = $request->get('jumlah');
             $baku->tgl_masuk = $request->get('tgl_masuk');
-            $baku->save();
 
-            $bahanbaku = BahanBaku::find($request->bahan);
-            $bahanbaku->stok = $bahanbaku->stok - $request->jumlah;
-            $bahanbaku->save();
-
+        if($baku->save()){
+            $total_bahan_masuk = BahanBakuMasuk::where('id_bahan',$baku->id_bahan)->sum('jumlah');
+            $update_bahan = BahanBaku::find($baku->id_bahan);
+            $update_bahan->stok = $total_bahan_masuk;
+            $update_bahan->update();
+            }
             return redirect ('bahanmasuk/index');
         }
     }
     public function delete($id){
         $masuk_del = BahanBakuMasuk::findOrfail($id);
-        $masuk_del->delete();
+        if($masuk_del->delete())
+        {
+            $total_bahan_masuk = BahanBakuMasuk::where('id_bahan',$masuk_del->id_bahan)->sum('jumlah');
+            $update_bahan = BahanBaku::find($masuk_del->id_bahan);
+            $update_bahan->stok = $total_bahan_masuk;
+            $update_bahan->update();
+        }
         return response()->json(['status' => 'Data Bahan Baku Masuk Telah Berhasil Di Hapus']);
     }
 }

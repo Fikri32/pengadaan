@@ -17,6 +17,7 @@
                 @foreach($masuk as $s)
                     <form action="{{route('produkmasuk.update',$s->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" value="{{ $s->id_produk }}">
                         <div class="row justify-content-center">
                             <div class="col-md-6">
                                 <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">

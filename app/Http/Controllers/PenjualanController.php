@@ -7,6 +7,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use DB;
+use App\ProdukMasuk;
 use App\penjualan;
 use App\produk;
 
@@ -92,19 +93,28 @@ class PenjualanController extends Controller
             $jual->tanggal = $request->get('tanggal');
             $jual->jumlah = $request->get('jumlah');
             if($jual->update()){
-                $jual = penjualan::select('penjualans.jumlah')->where('id',$id)->first();
-                $jual = intval($jual['jumlah']);
-                $produk = produk::find($request->produk);
-                $produk->stok = $produk->stok + $produk->stok - $jual - $request->jumlah ;
-                $produk->update();
-                }
+                //untuk table produk
+                $total_produk_masuk = ProdukMasuk::where('id_produk',$jual->id_produk)->sum('jumlah');
+                $total_produk_keluar = penjualan::where('id_produk',$jual->id_produk)->sum('jumlah');
+                $update_produk = produk::find($jual->id_produk);
+                $update_produk->stok = $total_produk_masuk - $total_produk_keluar;
+                $update_produk->update();
+            }
 
             return redirect ('penjualan/index');
         }
     }
     public function delete($id){
         $penjualan_del = penjualan::findOrfail($id);
-        $penjualan_del->delete();
+        if($penjualan_del->delete())
+        {
+            //untuk table produk
+            $total_produk_masuk = ProdukMasuk::where('id_produk',$penjualan_del->id_produk)->sum('jumlah');
+            $total_produk_keluar = penjualan::where('id_produk',$penjualan_del->id_produk)->sum('jumlah');
+            $update_produk = produk::find($penjualan_del->id_produk);
+            $update_produk->stok = $total_produk_masuk - $total_produk_keluar;
+            $update_produk->update();
+        }
         return response()->json(['status' => 'Data Penjualan Telah Berhasil Di hapus']);
     }
 

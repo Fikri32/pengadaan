@@ -103,39 +103,31 @@ class ProdukMasukController extends Controller
         $v = Validator::make($request->all(),$rules,$pesan);
         if($v->fails()){
             return back()->withInput()->withErrors($v);
-
         }else{
-
             $masuk = ProdukMasuk::find($id);
             $masuk->id_produk = $request->get('produk');
             $masuk->tanggal = $request->get('tanggal');
             $masuk->jumlah = $request->get('jumlah');
             if($masuk->update()){
-            $masuk = ProdukMasuk::select('produks_masuk.jumlah')->pluck('jumlah');
-            // $array = array();
-            // for($i = 0; $i<count($masuk); $i++){
-            //     $array[$i] = intval($masuk[$i]['jumlah']);
-            //     dd($masuk[$i]);
-            // break;
-            // }
-
-            $produk = produk::find($request->produk);
-            $hitung = ProdukMasuk::all()->count();
-            if($hitung == 1){
-                $produk->stok = $produk->stok - $produk->stok + $request->jumlah;
-            }else{
-
-                $produk->stok = $produk->stok - $produk->stok + $request->jumlah ;
-
-            }
-            $produk->update();
+                //untuk table produk
+                $total_produk_masuk = ProdukMasuk::where('id_produk',$masuk->id_produk)->sum('jumlah');
+                $update_produk = produk::find($masuk->id_produk);
+                $update_produk->stok = $total_produk_masuk;
+                $update_produk->update();
             }
         }
         return redirect('produkmasuk/index');
     }
     public function delete($id){
         $masuk_del = ProdukMasuk::findOrfail($id);
-        $masuk_del->delete();
+        if($masuk_del->delete())
+        {
+            //untuk table produk
+            $total_produk_masuk = ProdukMasuk::where('id_produk',$masuk_del->id_produk)->sum('jumlah');
+            $update_produk = produk::find($masuk_del->id_produk);
+            $update_produk->stok = $total_produk_masuk;
+            $update_produk->update();
+        }
         return response()->json(['status' => 'Data Produk Masuk Berhasil Di Hapus']);
     }
 }
