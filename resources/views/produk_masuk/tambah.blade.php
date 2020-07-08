@@ -37,7 +37,7 @@
                                 <div class="form-group row {{ $errors->has('tanggal') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label label for="tanggal">Tanggal</label>
-                                            <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Masukan Stok Produk">
+                                            <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Masukan Tanggal Produk Masuk" data-date-format="dd-mm-yyyy" data-language="id">
                                         @if ($errors->has('tanggal'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('tanggal') }}</strong>
@@ -48,7 +48,7 @@
                                 <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label for="jumlah">Jumlah</label>
-                                            <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Stok Produk">
+                                            <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Jumlah Produk Masuk">
                                         @if ($errors->has('jumlah'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('jumlah') }}</strong>

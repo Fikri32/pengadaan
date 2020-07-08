@@ -45,6 +45,7 @@ class ProdukController extends Controller
 
     public function tambah(Request $request){
         if($request->isMethod('get')){
+
             return view('produk.tambah');
         }else{
             $rules = [

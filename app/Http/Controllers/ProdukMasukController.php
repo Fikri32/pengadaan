@@ -10,6 +10,7 @@ use DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\produk;
 use App\ProdukMasuk;
+use App\Penjualan;
 
 class ProdukMasukController extends Controller
 {
@@ -22,14 +23,12 @@ class ProdukMasukController extends Controller
     public function cari(Request $request)
     {
         $cari = $request->cari;
-        $masuk = ProdukMasuk::whereHas('produk', function ($query) use ($cari){
-            $query->where('nama', 'like', '%'.$cari.'%')
-                  ->orWhere('jumlah','like','%'.$cari.'%') ;
-
-        })
-        ->with(['produk' => function($query) use ($cari){
-            $query->where('nama', 'like', '%'.$cari.'%'  );
-        }])->get();
+        $masuk = ProdukMasuk::select('produks.nama','produks_masuk.jumlah','produks_masuk.tanggal','produks_masuk.id_produk')
+                ->join('produks','produks.id','=','produks_masuk.id_produk')
+                ->where('produks.nama','like',"%".$cari."%")
+                ->orwhere('produks_masuk.jumlah','like',"%".$cari."%")
+                ->orwhere('produks_masuk.tanggal','like',"%".$cari."%")
+                ->paginate();
         return view('produk_masuk.index',compact('masuk'));
     }
 
@@ -111,8 +110,9 @@ class ProdukMasukController extends Controller
             if($masuk->update()){
                 //untuk table produk
                 $total_produk_masuk = ProdukMasuk::where('id_produk',$masuk->id_produk)->sum('jumlah');
+                $total_produk_keluar = penjualan::where('id_produk',$masuk->id_produk)->sum('jumlah');
                 $update_produk = produk::find($masuk->id_produk);
-                $update_produk->stok = $total_produk_masuk;
+                $update_produk->stok = $total_produk_masuk - $total_produk_keluar;
                 $update_produk->update();
             }
         }
@@ -124,8 +124,9 @@ class ProdukMasukController extends Controller
         {
             //untuk table produk
             $total_produk_masuk = ProdukMasuk::where('id_produk',$masuk_del->id_produk)->sum('jumlah');
+            $total_produk_keluar = penjualan::where('id_produk',$masuk_del->id_produk)->sum('jumlah');
             $update_produk = produk::find($masuk_del->id_produk);
-            $update_produk->stok = $total_produk_masuk;
+            $update_produk->stok = $total_produk_masuk - $total_produk_keluar;
             $update_produk->update();
         }
         return response()->json(['status' => 'Data Produk Masuk Berhasil Di Hapus']);

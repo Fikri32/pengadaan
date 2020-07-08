@@ -14,12 +14,12 @@
             <div class="block block-rounded">
                 <div class="block-content bg-body-light">
                     <!-- Search -->
-                    <form action="be_pages_ecom_products.html" method="post" onsubmit="return false;">
+                    <form action="{{route('laporan_masuk.cari')}}" method="get">
                         <div class="block-header block-header-default">
                             <h3 class="block-title"></h3>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Cari data Bahan Baku">
+                                    <input type="text" class="form-control" id="cari" name="cari" placeholder="Cari data Bahan Baku">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-secondary">
                                             <i class="fa fa-search"></i>

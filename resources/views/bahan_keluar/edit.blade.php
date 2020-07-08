@@ -49,8 +49,8 @@
                                 </div>
                                 <div class="form-group row {{ $errors->has('tgl_keluar') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                            <label for="tgl_keluar">Tanggal Masuk</label>
-                                            <input type="date" class="form-control" id="tgl_keluar" name="tgl_keluar" value = "{{$d->tgl_keluar}}" placeholder="Masukan tgl_keluar Bahan Baku">
+                                            <label for="tgl_keluar">Tanggal Keluar</label>
+                                            <input type="date" class="form-control" id="tgl_keluar" name="tgl_keluar" value = "{{$d->tgl_keluar}}" data-date-format="dd-mm-yyyy" data-language="id" placeholder="Masukan tgl_keluar Bahan Baku">
                                         @if ($errors->has('tgl_keluar'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('tgl_keluar') }}</strong>

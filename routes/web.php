@@ -46,9 +46,11 @@ Route::group(['prefix' => 'bahanmasuk'],function(){
     Route::get('/edit/{id}','MasukController@edit')->name('masuk.edit');
     Route::post('/update/{id}','MasukController@update')->name('masuk.update');
     Route::delete('/delete/{id}','MasukController@delete')->name('masuk.delete');
+    Route::get('/cari','MasukController@cari')->name('masuk.cari');
 });
 Route::group(['prefix' => 'bahankeluar'],function(){
     Route::get('/index','KeluarController@index')->name('keluar.index');
+    Route::get('/cari','KeluarController@cari')->name('keluar.cari');
     Route::match(['get' , 'post'],'tambah','KeluarController@tambah')->name('keluar.tambah');
     Route::get('/edit/{id}','KeluarController@edit')->name('keluar.edit');
     Route::post('/update/{id}','KeluarController@update')->name('keluar.update');
@@ -66,7 +68,7 @@ Route::group(['prefix' => 'produk'],function(){
 
 Route::group(['prefix' => 'produkmasuk'],function(){
     Route::get('index','ProdukMasukController@index')->name('produkmasuk.index');
-    Route::get('/cari','ProdukMasukController@cari')->name('masuk.cari');
+    Route::get('/cari','ProdukMasukController@cari')->name('produkmasuk.cari');
     Route::match(['get','post'],'tambah','ProdukMasukController@tambah')->name('produkmasuk.tambah');
     Route::get('/edit/{id}','ProdukMasukController@edit')->name('produkmasuk.edit');
     Route::post('/update/{id}','ProdukMasukController@update')->name('produkmasuk.update');
@@ -75,6 +77,7 @@ Route::group(['prefix' => 'produkmasuk'],function(){
 
 Route::group(['prefix' => 'penjualan'],function(){
     Route::get('/index','PenjualanController@index')->name('penjualan.index');
+    Route::get('/cari','PenjualanController@cari')->name('penjualan.cari');
     Route::match(['get' , 'post'],'tambah','PenjualanController@tambah')->name('penjualan.tambah');
     Route::get('/edit/{id}','PenjualanController@edit')->name('penjualan.edit');
     Route::post('/update/{id}','PenjualanController@update')->name('penjualan.update');
@@ -91,13 +94,11 @@ Route::group(['prefix' => 'pengadaan'],function(){
 
 });
 Route::group(['prefix' => 'peramalan'],function(){
-
     Route::match(['get' , 'post'],'tambah','PeramalanController@tambah')->name('peramalan');
-    Route::get('/getProduk','PeramalanController@getProduk')->name('peramalan.getTotal');
     Route::get('/index','PeramalanController@index')->name('peramalan.index');
-
+    Route::get('/cari','PeramalanController@cari')->name('peramalan.cari');
     Route::match(['get' , 'post'],'update/{id}','PeramalanController@update')->name('peramalan.update');
-
+    Route::delete('delete/{id}','PeramalanController@delete')->name('peramalan.delete');
 });
 Route::group(['prefix' => 'komposisi'],function(){
     Route::get('/index/{id}','KomposisiController@index')->name('komposisi.index');
@@ -110,4 +111,13 @@ Route::group(['prefix' => 'laporan'], function () {
     Route::get('/bahanmasuk','LaporanMasukController@index')->name('laporan.masuk');
     Route::get('/bahankeluar', 'LaporanKeluarController@index')->name('laporan.keluar');
     Route::get('/stokbahanbaku','LaporanStokController@index')->name('laporan.stok');
+    Route::get('/bahankeluar/cari','LaporanKeluarController@cari')->name('laporan_keluar.cari');
+    Route::get('/bahanmasuk/cari','LaporanMasukController@cari')->name('laporan_masuk.cari');
+});
+
+Route::group(['prefix' => 'pengguna'],function(){
+    Route::get('index/','UserController@index')->name('pengguna.index');
+    Route::match(['get','post'],'tambah','UserController@tambah')->name('pengguna.tambah');
+    Route::match(['get','post'],'update/{id}','UserController@update')->name('pengguna.update');
+    Route::delete('/delete/{id}','UserController@delete')->name('pengguna.delete');
 });

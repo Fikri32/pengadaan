@@ -109,7 +109,7 @@
                                 <div class="form-group row {{ $errors->has('tanggal') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label for="tanggal">Tanggal Penagadaan Bahan Baku</label>
-                                            <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="tanggal pengadaan Bahan Baku">
+                                            <input type="date" class="form-control" id="tanggal" name="tanggal" data-date-format="dd-mm-yyyy" data-language="id" placeholder="tanggal pengadaan Bahan Baku">
                                         @if ($errors->has('tanggal'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('tanggal') }}</strong>

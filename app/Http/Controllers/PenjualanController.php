@@ -32,6 +32,17 @@ class PenjualanController extends Controller
         $jual = Penjualan::orderBy('id_produk','asc')->get();
         return view('penjualan.index',compact('jual'));
     }
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+        $jual = penjualan::select('produks.nama','penjualans.jumlah','penjualans.tanggal','penjualans.id_produk')
+                ->join('produks','produks.id','=','penjualans.id_produk')
+                ->where('produks.nama','like',"%".$cari."%")
+                ->orwhere('penjualans.jumlah','like',"%".$cari."%")
+                ->orwhere('penjualans.tanggal','like',"%".$cari."%")
+                ->paginate();
+        return view('penjualan.index',compact('jual'));
+    }
 
     public function tambah(Request $request){
         if($request->isMethod('get')){

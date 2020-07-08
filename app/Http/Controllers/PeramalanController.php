@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
+use RealRashid\SweetAlert\Facades\Alert;
 use DB;
 use App\Peramalan;
 use App\penjualan;
@@ -34,6 +34,17 @@ class PeramalanController extends Controller
     {
       $peramalan = Peramalan::all();
       return view('peramalan.index',compact('peramalan'));
+    }
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+        $peramalan = peramalan::select('produks.nama','peramalans.jumlah','peramalans.nama_rencana','peramalans.id_produk')
+                ->join('produks','produks.id','=','peramalans.id_produk')
+                ->where('produks.nama','like',"%".$cari."%")
+                ->orwhere('peramalans.jumlah','like',"%".$cari."%")
+                ->orwhere('peramalans.nama_rencana','like',"%".$cari."%")
+                ->paginate();
+        return view('peramalan.index',compact('peramalan'));
     }
 
     public function tambah(Request $request) {
@@ -191,13 +202,12 @@ class PeramalanController extends Controller
             }
         }
     }
-    public function getProduk(Request $request)
-    {
-        // dd($request->all());
-        $produk = produk::find($request->produk);
-        return response()->json([
-            // 'produk'=> $produk->id,
-        ]);
+
+    public function delete($id){
+        $peramalan = Peramalan::findOrFail($id);
+        $peramalan->delete();
+        return response()->json(['status' => 'Data Peramalan Telah Berhasil Di hapus']);
     }
+
 }
 

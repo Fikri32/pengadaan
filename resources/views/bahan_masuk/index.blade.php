@@ -14,12 +14,12 @@
             <div class="block block-rounded">
                 <div class="block-content bg-body-light">
                     <!-- Search -->
-                    <form action="be_pages_ecom_products.html" method="post" onsubmit="return false;">
+                    <form action="{{route('masuk.cari')}}" method="get">
                         <div class="block-header block-header-default">
-                            <h3 class="block-title">List Stok Bahan Baku</h3>
+                            <h3 class="block-title">List Stok Bahan Baku Masuk</h3>
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Cari data Bahan Baku">
+                                    <input type="text" class="form-control" id = "cari"  name="cari" placeholder="Cari data Bahan Baku">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-secondary">
                                             <i class="fa fa-search"></i>
@@ -67,7 +67,7 @@
                                 <em class="text-muted">{{$d->supplier->nama_supplier}}</em>
                                 </td>
                                 <td class="d-none d-sm-table-cell">
-                                <em class="text-muted">{{$d->tgl_masuk}}</em>
+                                <em class="text-muted">{{ date("d-m-Y", strtotime($d->tgl_masuk)) }}</em>
                                 </td>
                                 <td>
                                 <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('bahanmasuk/edit/'.$d->id) }}">

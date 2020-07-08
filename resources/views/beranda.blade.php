@@ -41,7 +41,9 @@
                         <i class="fa fa-dollar fa-3x text-primary"></i>
                     </div>
                     <div class="font-size-h3 font-w600 text-primary-darker"><span data-toggle="countTo" data-speed="1000" data-to="{{$penjualan}}"></span> Ton </div>
-                    <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Produk Terjual</div>
+                    <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Produk Chips Terjual</div>
+                    <div class="font-size-h3 font-w600 text-primary-darker"><span data-toggle="countTo" data-speed="1000" data-to="{{$Fiber}}"></span> Ton </div>
+                    <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Produk Fiber Terjual</div>
                 </div>
             </a>
         </div>
@@ -52,7 +54,7 @@
                         <i class=" si si-social-dropbox fa-3x text-primary"></i>
                     </div>
                     <div class="font-size-h3 font-w600 text-primary-darker" data-toggle="countTo" data-speed="1000" data-to="15">0</div>
-                    <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Messages</div>
+                    <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Persediaan Bahan Baku</div>
                 </div>
             </a>
         </div>

@@ -87,7 +87,7 @@
                             <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">
                                 <div class="col-md-5">
 
-                                        <input type="hidden" class="form-control" id="produk" name="produk" placeholder="Masukan Nama Rencana Produksi" value= "{{ $d->id }}">
+                                        <input type="text" class="form-control" id="produk_id" name="produk_id" placeholder="Masukan Nama Rencana Produksi" value= "{{$produk_id}}">
                                     @if ($errors->has('produk'))
                                         <div class="invalid-feedback">
                                             <strong>{{ $errors->first('produk') }}</strong>

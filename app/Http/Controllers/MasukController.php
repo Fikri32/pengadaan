@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use DB;
 use App\BahanBaku;
 use App\BahanBakuMasuk;
+use App\BahanBakuKeluar;
 use App\Supplier;
 
 
@@ -32,6 +33,19 @@ class MasukController extends Controller
     public function index(){
         $baku_data = BahanBakuMasuk::orderBy('id_bahan','asc')->get();
         // dd($baku_data)
+        return view('bahan_masuk.index',compact('baku_data'));
+    }
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+        $baku_data = BahanBakuMasuk::select('bahan_bakus.nama','suppliers.nama_supplier','bahan_bakus_masuk.jumlah','bahan_bakus_masuk.tgl_masuk','bahan_bakus_masuk.id_bahan','bahan_bakus_masuk.id_supplier')
+                ->join('bahan_bakus','bahan_bakus.id','=','bahan_bakus_masuk.id_bahan')
+                ->join('suppliers','suppliers.id','=','bahan_bakus_masuk.id_bahan')
+                ->where('bahan_bakus.nama','like',"%".$cari."%")
+                ->orwhere('suppliers.nama_supplier','like',"%".$cari."%")
+                ->orwhere('bahan_bakus_masuk.jumlah','like',"%".$cari."%")
+                ->orwhere('bahan_bakus_masuk.tgl_masuk','like',"%".$cari."%")
+                ->paginate();
         return view('bahan_masuk.index',compact('baku_data'));
     }
 
@@ -103,8 +117,9 @@ class MasukController extends Controller
 
         if($baku->save()){
             $total_bahan_masuk = BahanBakuMasuk::where('id_bahan',$baku->id_bahan)->sum('jumlah');
+            $total_bahan_keluar = BahanBakuKeluar::where('id_bahan',$baku->id_bahan)->sum('jumlah');
             $update_bahan = BahanBaku::find($baku->id_bahan);
-            $update_bahan->stok = $total_bahan_masuk;
+            $update_bahan->stok = $total_bahan_masuk - $total_bahan_keluar;
             $update_bahan->update();
             }
             return redirect ('bahanmasuk/index');
@@ -115,8 +130,9 @@ class MasukController extends Controller
         if($masuk_del->delete())
         {
             $total_bahan_masuk = BahanBakuMasuk::where('id_bahan',$masuk_del->id_bahan)->sum('jumlah');
+            $total_bahan_keluar = BahanBakuKeluar::where('id_bahan',$masuk_del->id_bahan)->sum('jumlah');
             $update_bahan = BahanBaku::find($masuk_del->id_bahan);
-            $update_bahan->stok = $total_bahan_masuk;
+            $update_bahan->stok = $total_bahan_masuk - $total_bahan_keluar;
             $update_bahan->update();
         }
         return response()->json(['status' => 'Data Bahan Baku Masuk Telah Berhasil Di Hapus']);

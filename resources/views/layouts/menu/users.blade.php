@@ -53,8 +53,17 @@
                 </li>
             </ul>
         </li>
-
-
+        <li>
+            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-users mr-5"></i>Pengguna</a>
+            <ul>
+                <li>
+                    <a href="{{ route('pengguna.tambah')}}" class="">Tambah Pengguna</a>
+                </li>
+                <li>
+                    <a href="{{ route('pengguna.index')}}" class="">Kelola Pengguna</a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>
 @endrole

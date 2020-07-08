@@ -33,11 +33,17 @@ class HomeController extends Controller
 
         $penjualan = penjualan::select('penjualans.id_produk,penjualans.jumlah')
         ->join('produks','produks.id','=','penjualans.id_produk')
+        ->where('produks.nama','=','Polyester Chips')
+        ->sum('penjualans.jumlah');
+
+        $Fiber = penjualan::select('penjualans.id_produk,penjualans.jumlah')
+        ->join('produks','produks.id','=','penjualans.id_produk')
+        ->where('produks.nama','=','Polyester Fiber')
         ->sum('penjualans.jumlah');
 
         // dd($penjualan);
         $produk    = produk::all();
         // dd($produk);
-        return view('beranda', compact('penjualan','produk'));
+        return view('beranda', compact('penjualan','produk','Fiber'));
     }
 }
