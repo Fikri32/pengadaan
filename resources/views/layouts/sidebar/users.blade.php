@@ -25,34 +25,43 @@
                     <!-- END Close Sidebar -->
 
                     <!-- Logo -->
-                    <div class="content-header-item">
-                        <a href="{{ url('/') }}">
-                            <img src="{{ asset('assets/img/logo/logo_ku.png') }}" width="100%" height="45px">
-                        </a>
+
+                    <div class="content-header-item ">
+                        <a href="">
+                                <img style ="background-color:white;" src="{{ asset('assets/img/logo/logo_ku.png') }}" width="100%" height="100px">
+                            </a>
+
                     </div>
                     <!-- END Logo -->
                 </div>
                 <!-- END Normal Mode -->
             </div>
             <!-- END Side Header -->
-
+            <br>
+            <br>
+            <br>
             <!-- Side User -->
             <div class="content-side content-side-full content-side-user px-10 align-parent">
-                <!-- Visible only in mini mode -->
-                <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                    <img class="img-avatar img-48" src="{{ asset('uploads/users/'.Auth::user()->foto ) }}" alt="">
-                </div>
-                <!-- END Visible only in mini mode -->
+                            <!-- Visible only in mini mode -->
+                            <div class="sidebar-mini-visible-b align-v animated fadeIn">
+                                <img class="img-avatar img-avatar32" src="assets/img/avatars/avatar15.jpg" alt="">
+                            </div>
+                            <!-- END Visible only in mini mode -->
 
-                <!-- Visible only in normal mode -->
-                <div class="sidebar-mini-hidden-b text-center">
-                    <a class="img-link" href="be_pages_generic_profile.html">
-                        <img class="img-avatar img-avatar96" src="{{ asset('uploads/users/'.Auth::user()->foto ) }}" alt="">
-                    </a>
-                </div>
-                <!-- END Visible only in normal mode -->
-            </div>
-            <!-- END Side User -->
+                            <!-- Visible only in normal mode -->
+                            <div class="sidebar-mini-hidden-b text-center">
+                                <a class="img-link" href="be_pages_generic_profile.html">
+                                    <img class="img-avatar" src="assets/img/avatars/avatar15.jpg" alt="">
+                                </a>
+                                <ul class="list-inline mt-10">
+                                    <li class="list-inline-item">
+                                        <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase"> {{ Auth::user()->name }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- END Visible only in normal mode -->
+                        </div>
+                        <!-- END Side User -->
 
             <!-- Side Navigation -->
             @include('layouts/menu/users')

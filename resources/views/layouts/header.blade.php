@@ -20,10 +20,6 @@
             {{ Auth::user()->name }}<i class="fa fa-angle-down ml-5"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
-
-                <a class="dropdown-item" href="" data-toggle="layout" data-action="side_overlay_toggle">
-                    <i class="si si-wrench mr-5"></i> Pengaturan
-                </a>
                 <a class="dropdown-item" href="" data-toggle="layout" data-action="side_overlay_toggle">
                         <i class="si si-lock mr-5"></i> Ubah Password
                     </a>

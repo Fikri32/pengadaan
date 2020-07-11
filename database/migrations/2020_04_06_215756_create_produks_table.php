@@ -18,7 +18,6 @@ class CreateProduksTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->Integer('harga');
-            $table->date('tanggal');
             $table->Integer('stok')->default('0');
             $table->timestamps();
         });

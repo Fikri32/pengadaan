@@ -36,13 +36,13 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group row {{ $errors->has('tanggal') ? ' is-invalid' : '' }}">
+                                <div class="form-group row {{ $errors->has('bulan') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                            <label label for="tanggal">Tanggal</label>
-                                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{$s->tanggal}}" placeholder="Masukan Stok Produk" data-date-format="dd-mm-yyyy" data-language="id">
-                                        @if ($errors->has('tanggal'))
+                                            <label label for="tanggal">Bulan</label>
+                                            <input type="month" class="form-control" id="tanggal" name="tanggal" value="{{$s->tanggal}}" placeholder="Masukan Stok Produk" data-date-format="dd-mm-yyyy" data-language="id">
+                                        @if ($errors->has('bulan'))
                                             <div class="invalid-feedback">
-                                                <strong>{{ $errors->first('tanggal') }}</strong>
+                                                <strong>{{ $errors->first('bulan') }}</strong>
                                             </div>
                                         @endif
                                     </div>

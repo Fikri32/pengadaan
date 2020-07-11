@@ -108,11 +108,14 @@ Route::group(['prefix' => 'komposisi'],function(){
     Route::delete('/delete/{id}','KomposisiController@delete')->name('komposisi.delete');
 });
 Route::group(['prefix' => 'laporan'], function () {
+    Route::get('/penjualan','LaporanPenjualanController@index')->name('laporan.penjualan');
+    Route::get('/produk','LaporanProduksiController@index')->name('laporan.produk');
     Route::get('/bahanmasuk','LaporanMasukController@index')->name('laporan.masuk');
     Route::get('/bahankeluar', 'LaporanKeluarController@index')->name('laporan.keluar');
     Route::get('/stokbahanbaku','LaporanStokController@index')->name('laporan.stok');
     Route::get('/bahankeluar/cari','LaporanKeluarController@cari')->name('laporan_keluar.cari');
     Route::get('/bahanmasuk/cari','LaporanMasukController@cari')->name('laporan_masuk.cari');
+    Route::get('/penjualan/cari','LaporanPenjualanController@cari')->name('laporan_penjualan.cari');
 });
 
 Route::group(['prefix' => 'pengguna'],function(){

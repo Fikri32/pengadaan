@@ -74,6 +74,8 @@ class PeramalanController extends Controller
             $sd = 0;
             $sl = 0;
             $z = 1.28;
+            $stok = 0;
+            $sdl = 0;
 
             if($from && $to)
             {
@@ -100,7 +102,7 @@ class PeramalanController extends Controller
                 'array'   => $array
             ];
             // dd($data);
-            return view('peramalan.ramal',compact('produk','produksi','array','periode','data', 'produk_id'));
+            return view('peramalan.ramal',compact('produk','produksi','array','periode','data','stok','sdl','F', 'produk_id'));
         }else{
             $rules = [
                 'nama'  => 'required',
@@ -177,7 +179,7 @@ class PeramalanController extends Controller
                 'periode' => $periode,
                 'array'   => $array
             ];
-            return view('peramalan.edit',compact('produk','produksi','array','periode','data','ramal','produk_id'));
+            return view('peramalan.edit',compact('produk','produksi','array','periode','data','stok','sdl','F','ramal','produk_id'));
         }else{
             $rules = [
                 'nama'  => 'required',

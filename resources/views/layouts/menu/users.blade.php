@@ -133,10 +133,10 @@
             <a class="{{ Request::is('home') ? 'active' : null }}" href="{{ route('home') }}" class=""><i class="si si-compass"></i><span class="sidebar-mini-hide">Beranda</span></a>
         </li>
         <li>
-            <a class="" href="" class=""><i class="fa fa-dollar mr-5"></i><span class="sidebar-mini-hide">Laporan Penjualan</span></a>
+            <a class="" href="{{ route('laporan.penjualan')}}" class=""><i class="fa fa-dollar mr-5"></i><span class="sidebar-mini-hide">Laporan Penjualan</span></a>
         </li>
         <li>
-            <a class="" href="" class=""><i class="fa fa-industry mr-5"></i><span class="sidebar-mini-hide">Laporan produksi</span></a>
+            <a class="" href="{{ route('laporan.produk')}}" class=""><i class="fa fa-industry mr-5"></i><span class="sidebar-mini-hide">Laporan produksi</span></a>
         </li>
         <li>
             <a class="" href="{{ route('laporan.stok')}}" ><i class="fa fa-cubes mr-5"></i><span class="sidebar-mini-hide">Laporan Stok Bahan Baku</span></a>

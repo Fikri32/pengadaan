@@ -30,17 +30,6 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
-                                    <div class="col-md-12">
-                                            <label for="jumlah">Jumlah</label>
-                                            <input type="text" class="form-control" id="jumlah" name="jumlah" value = "{{$d->jumlah}}" placeholder="Masukan Jumlah Bahan Baku">
-                                        @if ($errors->has('jumlah'))
-                                            <div class="invalid-feedback">
-                                                <strong>{{ $errors->first('jumlah') }}</strong>
-                                            </div>
-                                        @endif
-                                    </div>
-                                </div>
                                 <div class="form-group row {{ $errors->has('satuan') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label for="jumlah">Satuan</label>

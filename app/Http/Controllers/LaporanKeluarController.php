@@ -12,7 +12,7 @@ use App\BahanBakuKeluar;
 class LaporanKeluarController extends Controller
 {
     public function index(){
-        $baku_data = BahanBakuKeluar::all();
+        $baku_data = BahanBakuKeluar::orderBy('id_bahan','asc')->get();
         // dd($baku_data)
         return view('laporan.keluar',compact('baku_data'));
     }

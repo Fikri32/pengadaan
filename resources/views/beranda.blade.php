@@ -47,7 +47,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-6 col-xl-3">
+        <!-- <div class="col-6 col-xl-3">
             <a class="block block-link-rotate block-transparent text-right bg-primary-lighter" href="javascript:void(0)">
                 <div class="block-content block-content-full clearfix">
                     <div class="float-left mt-10 d-none d-sm-block">
@@ -68,7 +68,7 @@
                     <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Online</div>
                 </div>
             </a>
-        </div>
+        </div> -->
         <!-- END Row #1 -->
     </div>
 </div>

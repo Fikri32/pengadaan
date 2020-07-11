@@ -41,7 +41,8 @@
                                 <th style="width: 100px;">No</th>
                                 <th class="d-none d-sm-table-cell">Nama Supplier</th>
                                 <th class="d-none d-sm-table-cell">Alamat</th>
-                                <th class="d-none d-sm-table-cell">Email</th>
+                                <th class="d-none d-sm-table-cell">Telpon</th>
+                                <th class="d-none d-sm-table-cell">Fax</th>
                                 <th class="d-none d-sm-table-cell">Action</th>
 
                             </tr>
@@ -53,8 +54,8 @@
                                 <td>{{$d->id}}</td>
                                 <td>{{$d->nama_supplier}}</td>
                                 <td>{{$d->Alamat}}</td>
-
-                                <td>{{$d->email}}</td>
+                                <td>{{$d->no_telp}}</td>
+                                <td>{{$d->fax}}</td>
                                 <td>
 
                                 <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('supplier/edit/'.$d->id) }}">

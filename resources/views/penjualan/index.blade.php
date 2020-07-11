@@ -40,7 +40,7 @@
                                 <th style="width: 100px;">No</th>
                                 <th class="d-none d-sm-table-cell">Produk</th>
                                 <th class="d-none d-sm-table-cell">Jumlah</th>
-                                <th class="d-none d-sm-table-cell">Tanggal</th>
+                                <th class="d-none d-sm-table-cell">Bulan</th>
                                 <th class="d-none d-sm-table-cell">Action</th>
 
                             </tr>
@@ -58,7 +58,7 @@
                                 {{$d->jumlah}}
                                 </td>
                                 <td>
-                                {{ date("d-m-Y", strtotime($d->tanggal)) }}
+                                {{Carbon\Carbon::parse($d->tanggal)->translatedFormat('F Y')}}
                                 </td>
                                 <td>
                                 <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('penjualan/edit/'.$d->id) }}">

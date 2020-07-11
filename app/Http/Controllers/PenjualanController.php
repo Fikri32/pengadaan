@@ -10,6 +10,7 @@ use DB;
 use App\ProdukMasuk;
 use App\penjualan;
 use App\produk;
+use Carbon\Carbon;
 
 class PenjualanController extends Controller
 {
@@ -65,7 +66,8 @@ class PenjualanController extends Controller
             }else{
                 $jual = new penjualan();
                 $jual->id_produk = $request->get('produk');
-                $jual->tanggal = $request->get('tanggal');
+                $tanggal = $request->get('tanggal');
+                $jual->tanggal = Carbon::parse($tanggal)->addDays();
                 $jual->jumlah = $request->get('jumlah');
 
                 if($jual->save())
@@ -101,7 +103,8 @@ class PenjualanController extends Controller
         }else{
             $jual = penjualan::find($id);
             $jual->id_produk = $request->get('produk');
-            $jual->tanggal = $request->get('tanggal');
+            $tanggal = $request->get('tanggal');
+            $jual->tanggal = Carbon::parse($tanggal)->addDays();
             $jual->jumlah = $request->get('jumlah');
             if($jual->update()){
                 //untuk table produk

@@ -58,7 +58,7 @@ class SupplierController extends Controller
                $supplier->nama_supplier = $request->get('nama');
                $supplier->Alamat = $request->get('alamat');
                $supplier->no_telp = $request->get('no_telp');
-               $supplier->email = $request->get('email');
+               $supplier->fax = $request->get('fax');
                $supplier->save();
                return redirect('supplier/index');
             }
@@ -90,7 +90,7 @@ class SupplierController extends Controller
            $supplier->nama_supplier = $request->get('nama');
            $supplier->Alamat = $request->get('alamat');
            $supplier->no_telp = $request->get('no_telp');
-           $supplier->email = $request->get('email');
+           $supplier->fax = $request->fax('fax');
            $supplier->save();
            return redirect('supplier/index');
         }

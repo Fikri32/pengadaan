@@ -54,7 +54,7 @@
                                 <input type="hidden" class = "hapus_data" value = "{{$d->id}}">
                                 <td>{{$no}}</td>
                                 <td>{{$d->nama}}</td>
-                                <td>{{$d->harga}}</td>
+                                <td>Rp {{number_format($d->harga)}} / ton</td>
                                 <td>
                                   {{$d->stok}}
                                 </td>

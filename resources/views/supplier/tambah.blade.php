@@ -53,13 +53,13 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group row {{ $errors->has('email') ? ' is-invalid' : '' }}">
+                                <div class="form-group row {{ $errors->has('fax') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                        <label for="email">Email</label>
-                                            <input type="text" class="form-control" id="email" name="email" placeholder="Masukan Email Supplier">
-                                        @if ($errors->has('email'))
+                                        <label for="email">Fax</label>
+                                            <input type="text" class="form-control" id="fax" name="fax" placeholder="Masukan Fax Supplier">
+                                        @if ($errors->has('fax'))
                                             <div class="invalid-feedback">
-                                                <strong>{{ $errors->first('email') }}</strong>
+                                                <strong>{{ $errors->first('fax') }}</strong>
                                             </div>
                                         @endif
                                     </div>

@@ -63,12 +63,12 @@
                                 <div class="form-group row {{ $errors->has('email') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                         <div class="form-material form-material-primary ">
-                                            <input type="text" class="form-control" id="email" name="email"  value="{{$d->email}}" placeholder="Masukan Email Supplier">
-                                            <label for="email">Email</label>
+                                            <input type="text" class="form-control" id="fax" name="fax"  value="{{$d->fax}}" placeholder="Masukan fax Supplier">
+                                            <label for="email">Fax</label>
                                         </div>
-                                        @if ($errors->has('email'))
+                                        @if ($errors->has('fax'))
                                             <div class="invalid-feedback">
-                                                <strong>{{ $errors->first('email') }}</strong>
+                                                <strong>{{ $errors->first('fax') }}</strong>
                                             </div>
                                         @endif
                                     </div>

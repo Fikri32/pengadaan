@@ -11,12 +11,14 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\produk;
 use App\ProdukMasuk;
 use App\Penjualan;
+use Carbon\Carbon;
 
 class ProdukMasukController extends Controller
 {
     public function index()
     {
         $masuk = ProdukMasuk::orderBy('id_produk','asc')->get();
+
         return view('produk_masuk.index',compact('masuk'));
     }
 
@@ -59,7 +61,9 @@ class ProdukMasukController extends Controller
             }else{
                 $masuk = new ProdukMasuk();
                 $masuk->id_produk = $request->get('produk');
-                $masuk->tanggal = $request->get('tanggal');
+                $tanggal = $request->get('tanggal');
+
+                $masuk->tanggal = Carbon::parse($tanggal)->addDays(1);
                 $masuk->jumlah = $request->get('jumlah');
                 if($masuk->save()){
 
@@ -105,7 +109,8 @@ class ProdukMasukController extends Controller
         }else{
             $masuk = ProdukMasuk::find($id);
             $masuk->id_produk = $request->get('produk');
-            $masuk->tanggal = $request->get('tanggal');
+            $tanggal = $request->get('tanggal');
+            $masuk->tanggal = Carbon::parse($tanggal)->addDays(1);
             $masuk->jumlah = $request->get('jumlah');
             if($masuk->update()){
                 //untuk table produk

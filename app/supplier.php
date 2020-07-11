@@ -9,6 +9,6 @@ class supplier extends Model
     protected $table = 'suppliers';
 
     protected $fillable = [
-        'nama_supplier','Alamat','email','no_telp'
+        'nama_supplier','Alamat','fax','no_telp'
     ];
 }

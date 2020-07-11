@@ -104,7 +104,7 @@
                                 <td>
                                     {{$d->bahanbaku->nama}}
                                 </td>
-                                <td>{{round($d->jumlah,2)}}%</td>
+                                <td>{{round($d->jumlah,5)}}</td>
                                 <td>
                                 <a class="btn btn-rounded btn-alt-secondary mr-10 p" href="{{ url('komposisi/edit/'.$d->id) }}">
                                     <i class="si si-note mx-5"></i>

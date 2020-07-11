@@ -59,7 +59,7 @@
                                 <em class="text-muted"> {{$d->bahanbaku->satuan}}</em>
                                 </td>
                                 <td class="d-none d-sm-table-cell">
-                                <em class="text-muted">{{ date("d-m-Y", strtotime($d->tgl_keluar))}}</em>
+                                {{Carbon\Carbon::parse($d->tgl_keluar)->translatedFormat('d F Y')}}
                                 </td>
                             </tr>
                         </tbody>
