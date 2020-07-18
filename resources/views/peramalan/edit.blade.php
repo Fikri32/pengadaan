@@ -17,8 +17,8 @@
                 @foreach($ramal as $d)
                     <form action="{{ route('peramalan.update',$d->id) }}" method="get">
                     @csrf
-                        <div class="row">
-                        <div class="col-md-6 col-xl-3">
+                    <div class="row">
+                        <div class="col-md-6 col-xl-4">
                             <div class="form-group row {{ $errors->has('produk') ? ' is-invalid' : '' }}">
                                     <label class="col-lg-4 col-form-label" >Produk</label>
                                     <div class="col-lg-8">
@@ -36,33 +36,25 @@
                                 </div>
                             </div>
                             </div>
-                            <div class="col-md-6 col-xl-3">
+                            <div class="col-md-6 col-xl-4">
                                 <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label" >Dari</label>
+                                    <label class="col-lg-4 col-form-label" >Bulan</label>
                                     <div class="col-lg-8">
-                                        <input type="month" class="form-control" id="from" name="from" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="dd-mm-yyyy" placeholder="Dari Tanggal">
+                                        <input class="date form-control" type="text" id="target" name="target" value ="{{$now}}" >
                                         <div class="form-text text-danger"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-xl-3">
+                            <div class="col-md-6 col-xl-4" >
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label" >Sampai</label>
-                                    <div class="col-lg-8">
-                                        <input type="month" class="form-control" id="to" name="to" data-week-start="1" data-autoclose="true" data-today-highlight="true" data-date-format="dd-mm-yyyy" placeholder="Sampai Tanggal">
-                                        <div class="form-text text-danger"></div>
-                                    </div>
-                                </div>
-                            </div>
-                           <br>
-                            <div class="col-md-6 col-xl-3" >
-                                <div class="form-group row">
+
                                     <div class="col-sm-6">
                                         <button type="submit" class="btn btn-primary btn-lg mr-0 ml-auto btn-block">Ramal</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
 
                     </form>
                     @endforeach
@@ -110,7 +102,7 @@
                         <tbody>
 
 
-                            <tr>
+                            <tr class ="text-center">
 
                                 <td>
                                 {{Carbon\Carbon::parse($data['periode'][$i])->translatedFormat('F Y')}}
@@ -127,63 +119,63 @@
                         @endfor
                         </tbody>
 
-                        <tfoot>
+                        <tfoot  class = "text-center">
                         <td><b>Hasil Peramalan <br><br><br> Safety Stok <br><br><br> Produk Tersisa <br><br><br> Jumlah Produksi  </b></td>
 
-<td >
-<div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
-        <div class="col-md-12">
-                <input type="text" class="form-control" id="hasil" name="hasil" placeholder="Masukan Nama Rencana Produksi" value = "{{$F}}" readonly>
-            @if ($errors->has('jumlah'))
-                <div class="invalid-feedback">
-                    <strong>{{ $errors->first('jumlah') }}</strong>
-                </div>
-            @endif
-        </div>
-    </div>
-    <br>
-    <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
-        <div class="col-md-12">
-                <input type="text" class="form-control" id="safe" name="safe" placeholder="Masukan Nama Rencana Produksi" value = "{{$sdl}}" readonly>
-            @if ($errors->has('jumlah'))
-                <div class="invalid-feedback">
-                    <strong>{{ $errors->first('jumlah') }}</strong>
-                </div>
-            @endif
-        </div>
-    </div>
-    <br>
-    <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
-        <div class="col-md-12">
-                <input type="text" class="form-control" id="stok" name="stok" placeholder="Masukan Nama Rencana Produksi" value = "{{$stok}}" readonly>
-            @if ($errors->has('jumlah'))
-                <div class="invalid-feedback">
-                    <strong>{{ $errors->first('jumlah') }}</strong>
-                </div>
-            @endif
-        </div>
-    </div>
-    <br>
-    <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
-            <div class="col-md-12">
-                    <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Nama Rencana Produksi" value = "{{$produksi}}">
-                @if ($errors->has('jumlah'))
-                    <div class="invalid-feedback">
-                        <strong>{{ $errors->first('jumlah') }}</strong>
-                    </div>
-                @endif
-            </div>
-        </div>
-            <div class="form-group row">
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-sm btn-primary">
-                        Simpan
-                    </button>
+                        <td>
+                        <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
+                                <div class="col-md-12">
+                                        <input type="text" class="form-control" id="hasil" name="hasil" placeholder="Masukan Nama Rencana Produksi" value = "{{$F}}" style="text-align:center;" readonly>
+                                    @if ($errors->has('jumlah'))
+                                        <div class="invalid-feedback">
+                                            <strong>{{ $errors->first('jumlah') }}</strong>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
+                                <div class="col-md-12">
+                                        <input type="text" class="form-control" id="safe" name="safe" placeholder="Masukan Nama Rencana Produksi" value = "{{$sdl}}" style="text-align:center;" readonly>
+                                    @if ($errors->has('jumlah'))
+                                        <div class="invalid-feedback">
+                                            <strong>{{ $errors->first('jumlah') }}</strong>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
+                                <div class="col-md-12">
+                                        <input type="text" class="form-control" id="stok" name="stok" placeholder="Masukan Nama Rencana Produksi" value = "{{$stok}}" style="text-align:center;" readonly>
+                                    @if ($errors->has('jumlah'))
+                                        <div class="invalid-feedback">
+                                            <strong>{{ $errors->first('jumlah') }}</strong>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row {{ $errors->has('jumlah') ? ' is-invalid' : '' }}">
+                                    <div class="col-md-12">
+                                            <input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan Nama Rencana Produksi" value = "{{$s->jumlah}}" style="text-align:center;">
+                                        @if ($errors->has('jumlah'))
+                                            <div class="invalid-feedback">
+                                                <strong>{{ $errors->first('jumlah') }}</strong>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-sm btn-primary">
+                                                Simpan
+                                            </button>
 
-                </div>
-            </div>
+                                        </div>
+                                    </div>
 
-</td>
+                        </td>
 
 
 

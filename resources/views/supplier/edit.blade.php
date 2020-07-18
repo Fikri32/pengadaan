@@ -21,10 +21,8 @@
                             <div class="col-md-6">
                                 <div class="form-group row {{ $errors->has('nama') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                        <div class="form-material form-material-primary ">
-                                            <input type="text" class="form-control" id="nama" name="nama" value="{{$d->nama_supplier}}" placeholder="Masukan Nama Supplier">
-                                            <label for="nama">Nama Supplier</label>
-                                        </div>
+                                        <label for="nama">Nama Supplier</label>
+                                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Supplier" value = "{{$d->nama_supplier}}">
                                         @if ($errors->has('nama'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('nama') }}</strong>
@@ -34,10 +32,8 @@
                                 </div>
                                 <div class="form-group row {{ $errors->has('alamat') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                        <div class="form-material form-material-primary ">
-                                            <input type="text" class="form-control" id="alamat" name="alamat" value="{{$d->Alamat}}" placeholder="Masukan Alamat Supplier">
-                                            <label for="alamat">Alamat</label>
-                                        </div>
+                                        <label for="alamat">Alamat</label>
+                                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukan Alamat Supplier" value = "{{$d->Alamat}}">
                                         @if ($errors->has('alamat'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('alamat') }}</strong>
@@ -49,10 +45,8 @@
                             <div class="col-md-6">
                                 <div class="form-group row {{ $errors->has('no_telp') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                        <div class="form-material form-material-primary ">
-                                            <input type="text" class="form-control" id="no_telp" value="{{$d->no_telp}}" name="no_telp" placeholder="Masukan No telepon Supplier">
-                                            <label for="no_telp">No. Telepon</label>
-                                        </div>
+                                        <label for="no_telp">No. Telepon</label>
+                                            <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Masukan No telepon Supplier" value = "{{$d->no_telp}}">
                                         @if ($errors->has('no_telp'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('no_telp') }}</strong>
@@ -60,12 +54,10 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group row {{ $errors->has('email') ? ' is-invalid' : '' }}">
+                                <div class="form-group row {{ $errors->has('fax') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
-                                        <div class="form-material form-material-primary ">
-                                            <input type="text" class="form-control" id="fax" name="fax"  value="{{$d->fax}}" placeholder="Masukan fax Supplier">
-                                            <label for="email">Fax</label>
-                                        </div>
+                                        <label for="email">Fax</label>
+                                            <input type="text" class="form-control" id="fax" name="fax" placeholder="Masukan Fax Supplier" value="{{$d->fax}}">
                                         @if ($errors->has('fax'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('fax') }}</strong>

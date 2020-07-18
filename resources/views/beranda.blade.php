@@ -18,7 +18,20 @@
 <div class="content">
     <div class="row gutters-tiny invisible" data-toggle="appear">
         <!-- Row #1 -->
-        <div class="col-6 col-xl-3">
+        <div class="col-6 col-xl-4">
+            <a class="block block-link-rotate block-transparent text-right bg-primary-lighter" href="javascript:void(0)">
+                <div class="block-content block-content-full clearfix">
+                    <div class="float-left mt-10 d-none d-sm-block">
+                        <i class=" si si-social-dropbox fa-3x text-primary"></i>
+                    </div>
+                    @foreach($bahan as $s)
+                    <div class="font-size-h3 font-w600 text-primary-darker" data-toggle="countTo" data-speed="1000" data-to="{{$s->stok}}"> MT </div>
+                    <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Persediaan Bahan Baku {{$s->nama}} </div>
+                    @endforeach
+                </div>
+            </a>
+        </div>
+        <div class="col-6 col-xl-4">
             <a class="block block-link-rotate block-transparent text-right bg-primary-lighter" href="javascript:void(0)">
                 <div class="block-content block-content-full clearfix">
                     <div class="float-left mt-10 d-none d-sm-block">
@@ -34,7 +47,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-6 col-xl-3">
+        <div class="col-6 col-xl-4">
             <a class="block block-link-rotate block-transparent text-right bg-primary-lighter" href="javascript:void(0)">
                 <div class="block-content block-content-full clearfix">
                     <div class="float-left mt-10 d-none d-sm-block">
@@ -47,29 +60,9 @@
                 </div>
             </a>
         </div>
-        <!-- <div class="col-6 col-xl-3">
-            <a class="block block-link-rotate block-transparent text-right bg-primary-lighter" href="javascript:void(0)">
-                <div class="block-content block-content-full clearfix">
-                    <div class="float-left mt-10 d-none d-sm-block">
-                        <i class=" si si-social-dropbox fa-3x text-primary"></i>
-                    </div>
-                    <div class="font-size-h3 font-w600 text-primary-darker" data-toggle="countTo" data-speed="1000" data-to="15">0</div>
-                    <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Persediaan Bahan Baku</div>
-                </div>
-            </a>
-        </div>
-        <div class="col-6 col-xl-3">
-            <a class="block block-link-rotate block-transparent text-right bg-primary-lighter" href="javascript:void(0)">
-                <div class="block-content block-content-full clearfix">
-                    <div class="float-left mt-10 d-none d-sm-block">
-                        <i class="si si-users fa-3x text-primary"></i>
-                    </div>
-                    <div class="font-size-h3 font-w600 text-primary-darker" data-toggle="countTo" data-speed="1000" data-to="4252">0</div>
-                    <div class="font-size-sm font-w600 text-uppercase text-primary-dark">Online</div>
-                </div>
-            </a>
-        </div> -->
-        <!-- END Row #1 -->
+
+
+        <!-- END Row #1
     </div>
 </div>
 @stop

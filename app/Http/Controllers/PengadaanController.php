@@ -11,6 +11,7 @@ use App\pengadaan;
 use App\supplier;
 use App\BahanBaku;
 use App\Komposisi;
+use Carbon\Carbon;
 
 class PengadaanController extends Controller
 {
@@ -33,10 +34,10 @@ class PengadaanController extends Controller
             $supplier = supplier::all();
             $bahan = BahanBaku::all();
             $ramal = Peramalan::all();
+            $now = Carbon::now()->toDateString();
 
 
-
-        return view('pengadaan.tambah',compact('supplier','bahan','ramal'));
+        return view('pengadaan.tambah',compact('supplier','bahan','ramal','now'));
         }else{
             $rules = [
                 'bahan'  => 'required',

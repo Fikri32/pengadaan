@@ -31,7 +31,7 @@ class MasukController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-        $baku_data = BahanBakuMasuk::orderBy('id_bahan','asc')->get();
+        $baku_data = BahanBakuMasuk::orderBy('id_bahan','asc')->orderBy('tgl_masuk','asc')->get();
         // dd($baku_data)
         return view('bahan_masuk.index',compact('baku_data'));
     }
@@ -62,10 +62,10 @@ class MasukController extends Controller
                 'supplier' => 'required',
             ];
             $pesan = [
-                'bahan' => 'Bahan Baku Tidak Boleh Kosong',
-                'jumlah.required' => 'jumlah Bahan Baku Tidak Boleh Kosong',
-                'tgl_masuk.required' => 'tgl_masuk Bahan Baku Tidak Boleh Kosong',
-                'supplier' => 'Supplier Tidak Boleh Kosong',
+                'bahan.required' => 'Bahan Baku Tidak Boleh Kosong',
+                'jumlah.required' => 'Jumlah Bahan Baku Tidak Boleh Kosong',
+                'tgl_masuk.required' => 'Tanggal Masuk Bahan Baku Tidak Boleh Kosong',
+                'supplier.required' => 'Supplier Tidak Boleh Kosong',
             ];
             $v = Validator :: make($request->all(),$rules,$pesan);
             if($v->fails()){
@@ -100,10 +100,10 @@ class MasukController extends Controller
             'supplier' => 'required',
         ];
         $pesan = [
-            'bahan' => 'Bahan Baku Tidak Boleh Kosong',
-            'jumlah.required' => 'jumlah Bahan Baku Tidak Boleh Kosong',
-            'tgl_masuk.required' => 'tgl_masuk Bahan Baku Tidak Boleh Kosong',
-            'supplier' => 'Supplier Tidak Boleh Kosong',
+            'bahan.required' => 'Bahan Baku Tidak Boleh Kosong',
+            'jumlah.required' => 'Jumlah Bahan Baku Tidak Boleh Kosong',
+            'tgl_masuk.required' => 'Tanggal Masuk Bahan Baku Tidak Boleh Kosong',
+            'supplier.required' => 'Supplier Tidak Boleh Kosong',
         ];
         $v = Validator :: make($request->all(),$rules,$pesan);
         if($v->fails()){

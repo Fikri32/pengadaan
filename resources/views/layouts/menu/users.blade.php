@@ -111,13 +111,13 @@
             </ul>
         </li>
         <li>
-        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-bar-chart mr-5"></i>Peramalan</a>
+        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-bar-chart mr-5"></i>Perencanaan Jumlah Produk</a>
             <ul>
                 <li>
-                    <a href="{{ route('peramalan') }}" class="">Ramal Produk</a>
+                    <a href="{{ route('peramalan') }}" class="">Hitung Perencanaan Jumlah Produk</a>
                 </li>
                 <li>
-                    <a href="{{ route('peramalan.index')}}" class="">Hasil Peramalan</a>
+                    <a href="{{ route('peramalan.index')}}" class="">Hasil Perencanaan</a>
                 </li>
 
             </ul>

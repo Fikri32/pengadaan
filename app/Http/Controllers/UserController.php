@@ -34,10 +34,10 @@ class UserController extends Controller
                 'role'  => 'required'
             ];
             $pesan = [
-                'nama' => 'Nama Tidak Boleh Kosong',
-                'email' => 'Email Tidak Boleh Kosong',
-                'password' => 'Password Tidak Boleh Kosong',
-                'role'   => 'Role Tidak Boleh Kosong'
+                'nama.required' => 'Nama Tidak Boleh Kosong',
+                'email.required' => 'Email Tidak Boleh Kosong',
+                'password.required' => 'Password Tidak Boleh Kosong',
+                'role.required'   => 'Role Tidak Boleh Kosong'
             ];
 
             $v = Validator::make($request->all(),$rules,$pesan);
@@ -74,10 +74,10 @@ class UserController extends Controller
                 'role'  => 'required'
             ];
             $pesan = [
-                'nama' => 'Nama Tidak Boleh Kosong',
-                'email' => 'Email Tidak Boleh Kosong',
-                'password' => 'Password Tidak Boleh Kosong',
-                'role'   => 'Role Tidak Boleh Kosong'
+                'nama.required' => 'Nama Tidak Boleh Kosong',
+                'email.required' => 'Email Tidak Boleh Kosong',
+                'password.required' => 'Password Tidak Boleh Kosong',
+                'role.required'   => 'Role Tidak Boleh Kosong'
             ];
 
             $v = Validator::make($request->all(),$rules,$pesan);

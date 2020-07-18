@@ -59,9 +59,9 @@ class KeluarController extends Controller
 
             ];
             $pesan = [
-                'bahan' => 'Bahan Baku Tidak Boleh Kosong',
+                'bahan.required' => 'Bahan Baku Tidak Boleh Kosong',
                 'jumlah.required' => 'jumlah Bahan Baku Tidak Boleh Kosong',
-                'tgl_keluar.required' => 'tgl_keluar Bahan Baku Tidak Boleh Kosong',
+                'tgl_keluar.required' => 'Tanggal Keluar Bahan Baku Tidak Boleh Kosong',
 
             ];
             $v = Validator :: make($request->all(),$rules,$pesan);
@@ -90,16 +90,14 @@ class KeluarController extends Controller
     public function update(Request $request,$id){
         $rules = [
             'bahan' => 'required',
-
             'jumlah' => 'required',
             'tgl_keluar' => 'required',
 
         ];
         $pesan = [
-            'bahan' => 'Bahan Baku Tidak Boleh Kosong',
-
+            'bahan.required' => 'Bahan Baku Tidak Boleh Kosong',
             'jumlah.required' => 'jumlah Bahan Baku Tidak Boleh Kosong',
-            'tgl_keluar.required' => 'tgl_keluar Bahan Baku Tidak Boleh Kosong',
+            'tgl_keluar.required' => 'Tanggal Keluar Bahan Baku Tidak Boleh Kosong',
 
         ];
         $v = Validator :: make($request->all(),$rules,$pesan);

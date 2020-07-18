@@ -213,7 +213,7 @@ class PeramalanController extends Controller
 
 }
 
-penjualan Model
+
 $produk_id = $request->input('produk');
         // dd($session);
         $from = $request->from;

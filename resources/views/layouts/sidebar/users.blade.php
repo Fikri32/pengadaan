@@ -56,6 +56,8 @@
                                 <ul class="list-inline mt-10">
                                     <li class="list-inline-item">
                                         <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase"> {{ Auth::user()->name }}</a>
+                                        <br>
+                                        <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase"> {{ Auth::user()->roles[0]->name }}</a>
                                     </li>
                                 </ul>
                             </div>

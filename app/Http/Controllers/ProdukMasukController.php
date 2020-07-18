@@ -17,7 +17,7 @@ class ProdukMasukController extends Controller
 {
     public function index()
     {
-        $masuk = ProdukMasuk::orderBy('id_produk','asc')->get();
+        $masuk = ProdukMasuk::orderBy('id_produk','asc')->orderBy('tanggal', 'ASC')->get();
 
         return view('produk_masuk.index',compact('masuk'));
     }
@@ -44,14 +44,14 @@ class ProdukMasukController extends Controller
         }else{
             $rules = [
                 'produk' => 'required',
-                'tanggal' => 'required',
+                'bulan' => 'required',
                 'jumlah' => 'required'
             ];
 
             $pesan = [
-                'produk' => 'required',
-                'tanggal' => 'required',
-                'jumlah' => 'required'
+                'produk.required' => 'Produk Tidak Boleh Kosong',
+                'bulan.required' => 'Bulan Tidak Boleh Kosong',
+                'jumlah.required' => 'Jumlah Tidak Boleh Kosong'
             ];
 
             $v = Validator::make($request->all(),$rules,$pesan);
@@ -93,14 +93,14 @@ class ProdukMasukController extends Controller
     {
         $rules = [
             'produk' => 'required',
-            'tanggal' => 'required',
+            'bulan' => 'required',
             'jumlah' => 'required'
         ];
 
         $pesan = [
-            'produk' => 'required',
-            'tanggal' => 'required',
-            'jumlah' => 'required'
+            'produk.required' => 'Produk Tidak Boleh Kosong',
+            'bulan.required' => 'Bulan Tidak Boleh Kosong',
+            'jumlah.required' => 'Jumlah Tidak Boleh Kosong'
         ];
 
         $v = Validator::make($request->all(),$rules,$pesan);

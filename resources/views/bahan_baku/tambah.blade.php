@@ -22,8 +22,6 @@
                                     <div class="col-md-12">
                                         <label for="no_indeks">Nama Bahan Baku</label>
                                             <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Bahan Baku">
-
-
                                         @if ($errors->has('nama'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('nama') }}</strong>

@@ -56,8 +56,8 @@ class ProdukController extends Controller
             ];
 
             $pesan = [
-                'nama' => 'required',
-                'harga' => 'required'
+                'nama.required' => 'Nama Produk Tidak Boleh Kosong',
+                'harga.required' => 'Harga Produk Tidak Boleh Kosong'
 
 
             ];
@@ -85,14 +85,14 @@ class ProdukController extends Controller
     public function update(Request $request,$id){
         $rules = [
             'nama' => 'required',
-            'harga' => 'required',
+            'harga' => 'required'
 
 
         ];
 
         $pesan = [
-            'nama' => 'required',
-            'harga' => 'required'
+            'nama.required' => 'Nama Produk Tidak Boleh Kosong',
+            'harga.required' => 'Harga Produk Tidak Boleh Kosong'
 
 
         ];

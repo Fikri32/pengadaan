@@ -38,7 +38,7 @@
                                 <div class="form-group row {{ $errors->has('bulan') ? ' is-invalid' : '' }}">
                                     <div class="col-md-12">
                                             <label label for="tanggal">Bulan</label>
-                                            <input type="month" class="form-control" id="tanggal" name="tanggal" value="{{$d->tanggal}}" data-date-format="dd-mm-yyyy" data-language="id" placeholder="Masukan Penjualan Perbulan">
+                                            <input class="date form-control" type="text" id="target" name="target" value ="{{$d->tanggal}}" >
                                         @if ($errors->has('bulan'))
                                             <div class="invalid-feedback">
                                                 <strong>{{ $errors->first('bulan') }}</strong>
@@ -75,10 +75,10 @@
     </div>
 </div>
 @stop
-
 @push('scripts')
-<script>
-    $("#input-ficons-5").fileinput();
+<script type="text/javascript">
+    $('.date').datepicker({
+       format: 'mm-dd-yyyy'
+     });
 </script>
-
 @endpush

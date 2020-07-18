@@ -43,7 +43,8 @@ class HomeController extends Controller
 
         // dd($penjualan);
         $produk    = produk::all();
+        $bahan     = BahanBaku::all();
         // dd($produk);
-        return view('beranda', compact('penjualan','produk','Fiber'));
+        return view('beranda', compact('penjualan','produk','Fiber','bahan'));
     }
 }

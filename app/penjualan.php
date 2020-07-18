@@ -50,14 +50,14 @@ class penjualan extends Model
     {
 
         $produk_id = $request->input('produk');
-        // dd($session);
-        $from = $request->from;
-        $to = $request->to;
+        // $from = $request->from;
+        $dateMonthArray = explode('-', $request->target);
+        // dd($dateMonthArray);
+
 
         $data = penjualan::selectRaw('DATE_FORMAT(penjualans.tanggal, "%Y-%m") as periode,penjualans.id_produk,penjualans.jumlah')
             ->join('produks', 'produks.id', '=', 'penjualans.id_produk')
             ->where('produks.id', $produk_id)
-            ->whereRaw("DATE_FORMAT(penjualans.tanggal, '%Y-%m') >= '$from' AND DATE_FORMAT(penjualans.tanggal, '%Y-%m') <= '$to'")
             ->get();
         return $data;
     }

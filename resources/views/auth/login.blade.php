@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
-        <title>Codebase - Bootstrap 4 Admin Template &amp; UI Framework</title>
+        <title>Sistem Informasi Manajemen Pengadaan Bahan Baku &amp;</title>
 
         <meta name="description" content="Codebase - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
         <meta name="author" content="pixelcave">
@@ -59,7 +59,7 @@
                                         <i class="si si-fire"></i>
                                         <span class="font-size-xl text-primary-dark">code</span><span class="font-size-xl">base</span>
                                     </a>
-                                    <h1 class="h3 font-w700 mt-30 mb-10">Welcome to Your Dashboard</h1>
+                                    <h1 class="h3 font-w700 mt-30 mb-10">Welcome to Sistem Infromasi Manajemen Pengadaan Bahan Baku</h1>
                                     <h2 class="h5 font-w400 text-muted mb-0">Please sign in</h2>
                                 </div>
                                 <!-- END Header -->

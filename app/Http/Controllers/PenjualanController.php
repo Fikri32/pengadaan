@@ -30,7 +30,7 @@ class PenjualanController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index(){
-        $jual = Penjualan::orderBy('id_produk','asc')->get();
+        $jual = Penjualan::orderBy('id_produk','asc')->orderBy('tanggal', 'ASC')->get();
         return view('penjualan.index',compact('jual'));
     }
     public function cari(Request $request)
@@ -52,13 +52,13 @@ class PenjualanController extends Controller
         }else{
             $rules = [
                 'produk'  => 'required',
-                'tanggal' => 'required',
+                'bulan' => 'required',
                 'jumlah' => 'required',
             ];
             $pesan = [
-                'produk'  => 'Produk Penjualan Tidak Boleh Kosong',
-                'tanggal' => 'Tanggal Penjualan Tidak Boleh Kosong',
-                'jumlah' => 'Jumlah Penjualan Tidak Boleh Kosong',
+                'produk.required'  => 'Produk Penjualan Tidak Boleh Kosong',
+                'bulan.required' => 'Bulan Penjualan Tidak Boleh Kosong',
+                'jumlah.required' => 'Jumlah Penjualan Tidak Boleh Kosong',
             ];
             $v = Validator :: make($request->all(),$rules,$pesan);
             if($v->fails()){
@@ -89,13 +89,14 @@ class PenjualanController extends Controller
 
     public function update(Request $request,$id){
         $rules = [
-
-            'tanggal' => 'required',
+            'produk'  => 'required',
+            'bulan' => 'required',
             'jumlah' => 'required',
         ];
         $pesan = [
-            'tanggal' => 'Tanggal Penjualan Tidak Boleh Kosong',
-            'jumlah' => 'Jumlah Penjualan Tidak Boleh Kosong',
+            'produk.required'  => 'Produk Penjualan Tidak Boleh Kosong',
+            'bulan.required' => 'Bulan Penjualan Tidak Boleh Kosong',
+            'jumlah.required' => 'Jumlah Penjualan Tidak Boleh Kosong',
         ];
         $v = Validator :: make($request->all(),$rules,$pesan);
         if($v->fails()){
